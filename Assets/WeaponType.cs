@@ -6,7 +6,7 @@ public class WeaponType: ScriptableObject
 {
 
     public int resourceCost = 1;
-    public GameObject projectilePrefab;
+    public GameObject projectilePrefab ;
     [Range(1,20)]
     public int projectilesPerShot = 1;
     [Range(0f, 360f)]

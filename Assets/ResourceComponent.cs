@@ -6,7 +6,7 @@ public class ResourceComponent : MonoBehaviour
     public int CurrentResource = 100;    // Start with full resource
 
     public delegate void ResourceDepleted();
-    public event ResourceDepleted OnResourceDepleted;
+
 
     // Handles taking damage (which reduces health and ammo)
     public void Damage(int amount)
@@ -14,7 +14,6 @@ public class ResourceComponent : MonoBehaviour
         CurrentResource = Mathf.Max(CurrentResource - amount, 0);
         if (CurrentResource <= 0)
         {
-            OnResourceDepleted?.Invoke();
             // Destroy the GameObject when resource is depleted
             Destroy(gameObject);
         }
