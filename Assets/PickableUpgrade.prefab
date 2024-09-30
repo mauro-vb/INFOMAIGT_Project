@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3919845425043048800}
   - component: {fileID: 5608519132621671484}
   - component: {fileID: 2878897010479445480}
-  - component: {fileID: -7694934275184255646}
   m_Layer: 7
   m_Name: PickableUpgrade
   m_TagString: Untagged
@@ -149,18 +148,3 @@ MonoBehaviour:
   weaponType: {fileID: 0}
   resourceColor: {r: 0, g: 1, b: 0, a: 1}
   weaponChangeColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &-7694934275184255646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7710927186228807351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04928243f4f9f4e23b103851be516fa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rb: {fileID: 0}
-  shootingWeapon: {fileID: 0}

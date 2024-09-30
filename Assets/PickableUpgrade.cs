@@ -31,7 +31,7 @@ public class UpgradePickable : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the player is the one colliding with the upgrade
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Blob"))
         {
           ShootingWeapon shootingWeapon = collision.gameObject.GetComponent<ShootingWeapon>();
           ResourceComponent resource = collision.gameObject.GetComponent<ResourceComponent>();
