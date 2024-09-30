@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bae9778f391a41129b987f03a5bc796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumResource: 50
-  CurrentResource: 20
+  MaximumResource: 60
+  CurrentResource: 5
 --- !u!114 &753891808144542424
 MonoBehaviour:
   m_ObjectHideFlags: 0

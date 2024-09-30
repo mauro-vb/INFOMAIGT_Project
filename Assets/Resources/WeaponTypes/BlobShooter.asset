@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5524de4d6efb749199c67b2a3447b707, type: 3}
   m_Name: BlobShooter
   m_EditorClassIdentifier: 
-  resourceCost: 20
+  resourceCost: 10
   projectilePrefab: {fileID: 7582272620923159653, guid: 873e71f92241244ae98c9b480dba9f07, type: 3}
   projectilesPerShot: 1
   spreadAngle: 0

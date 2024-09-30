@@ -58,7 +58,7 @@ public class BlobManager : MonoBehaviour
         {
             Destroy(currentBlob.gameObject.GetComponent<PlayerController>());
             Destroy(currentBlob.gameObject.GetComponent<ShootingWeapon>());
-            //currentBlob
+            currentBlob.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
         }
 
         // Add controls to the new blob
@@ -66,6 +66,7 @@ public class BlobManager : MonoBehaviour
         {
             newBlob.gameObject.AddComponent<PlayerController>();
             newBlob.gameObject.AddComponent<ShootingWeapon>();
+            newBlob.gameObject.GetComponent<SpriteRenderer>().color = new Color(107,179,0);
         }
     }
 

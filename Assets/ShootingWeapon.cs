@@ -102,7 +102,7 @@ public class ShootingWeapon : MonoBehaviour
         Vector3 shootDirection = transform.up.normalized; // Up is the forward direction in 2D
 
         // Calculate the position to shoot from (circle collider edge in the forward direction)
-        Vector3 shootOrigin = transform.position + shootDirection * (circleCollider.radius * (2*weaponType.resourceCost)/10);
+        Vector3 shootOrigin = transform.position + shootDirection * (circleCollider.radius * (2*weaponType.resourceCost)/5);
 
         return shootOrigin;
     }

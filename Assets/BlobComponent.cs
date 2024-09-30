@@ -50,8 +50,8 @@ public class BlobComponent : MonoBehaviour
                 int otherCurrentResource = otherResourceComponent.CurrentResource;
 
                 // Update the resources, ensuring no negative values
-                resourceComponent.Damage(otherCurrentResource);
-                otherResourceComponent.Damage(currentResource);
+                resourceComponent.Damage(otherCurrentResource * 2);
+                otherResourceComponent.Damage(currentResource * 2);
             }
         }
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MultiShot
   m_EditorClassIdentifier: 
   resourceCost: 15
-  projectilePrefab: {fileID: 7672375596508272924, guid: 100ed4bdbef6147239d95d0976b7af1f, type: 3}
+  projectilePrefab: {fileID: 7582272620923159653, guid: 873e71f92241244ae98c9b480dba9f07, type: 3}
   projectilesPerShot: 5
   spreadAngle: 90
   fireForce: 15
