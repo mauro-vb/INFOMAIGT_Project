@@ -43,13 +43,15 @@ public class BlobComponent : MonoBehaviour
             }
         }
         else {
+            Debug.Log("colliding not other blob");
             ResourceComponent otherResourceComponent = other.GetComponent<ResourceComponent>();
             if (otherResourceComponent != null) {
+                Debug.Log("colliding with resource component");
                 // Store the current resources for clarity
                 int currentResource = resourceComponent.CurrentResource;
                 int otherCurrentResource = otherResourceComponent.CurrentResource;
 
-                // Update the resources, ensuring no negative values
+                // Update the resources, damaging both blobs
                 resourceComponent.Damage(otherCurrentResource * 2);
                 otherResourceComponent.Damage(currentResource * 2);
             }

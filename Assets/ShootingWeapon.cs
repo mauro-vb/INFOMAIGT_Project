@@ -112,5 +112,6 @@ public class ShootingWeapon : MonoBehaviour
         float halfSpread = weaponType.spreadAngle / 2f;
         float step = weaponType.spreadAngle / Mathf.Max(weaponType.projectilesPerShot - 1, 1);
         return -halfSpread + (step * projectileIndex);
+
     }
 }
