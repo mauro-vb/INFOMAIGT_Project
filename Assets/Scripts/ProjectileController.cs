@@ -21,6 +21,9 @@ public class ProjectileController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(gameObject);
+        if (other.gameObject.layer == Layers.ENVIRONMENT || other.gameObject.layer == Layers.ENEMIES)
+        {
+            Destroy(gameObject);
+        }
     }
 }
