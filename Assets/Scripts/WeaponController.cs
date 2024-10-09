@@ -17,8 +17,8 @@ public class WeaponController : MonoBehaviour
         /* Shoot on click */
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-            float angle = Mathf.Acos(Vector3.Dot(dir, Vector3.right));
+            Vector2 dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+            float angle = Mathf.Acos(Vector2.Dot(dir, Vector2.right));
             ProjectileController projectile =
                 Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, angle))
                     .GetComponent<ProjectileController>();

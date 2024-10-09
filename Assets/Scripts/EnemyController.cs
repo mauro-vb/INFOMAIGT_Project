@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
     public EnemyData enemyData;
     public ResourceController resource; /* To be set in the editor */
     
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.layer == Layers.PROJECTILES)
         {
