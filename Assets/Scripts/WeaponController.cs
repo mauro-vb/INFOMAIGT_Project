@@ -61,9 +61,6 @@ public class WeaponController : MonoBehaviour
                 0
             );
             
-            Debug.Log("DistanceVec Magnitude: " + distanceVec.magnitude);
-            Debug.Log("SpawnPosition: " + spawnPosition);
-            
 
             gizmosSpawnPosition = new Vector2(spawnPosition.x, spawnPosition.y);
 

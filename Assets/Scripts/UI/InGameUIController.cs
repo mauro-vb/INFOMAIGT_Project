@@ -1,9 +1,12 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class InGameUIController : MonoBehaviour
 {
+    public Camera camera;
+    
     private Scene scene;
 
     private void Start()
@@ -14,6 +17,13 @@ public class InGameUIController : MonoBehaviour
     private void Update()
     {
         /* Get the */
-        var weapons = scene.GetRootGameObjects();
+        var gameobjects = scene.GetRootGameObjects();
+        for (int i = 0; i < gameobjects.Length; i++)
+        {
+            if (gameobjects[i].layer == Layers.PROJECTILES)
+            {
+                
+            }
+        }
     }
 }
