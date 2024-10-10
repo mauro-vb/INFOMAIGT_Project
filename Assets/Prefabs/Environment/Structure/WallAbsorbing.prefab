@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 349664418575227670}
   - component: {fileID: 9067315767803228998}
   - component: {fileID: 599128057146079919}
-  m_Layer: 11
-  m_Name: Wall
+  m_Layer: 9
+  m_Name: WallAbsorbing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 4c2c68cef14e0491d8a186d7bcab16e5, type: 3}
-  m_Color: {r: 0.15690638, g: 0.7735849, b: 0.67164123, a: 1}
+  m_Color: {r: 0.13207549, g: 0.11899254, b: 0.11899254, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

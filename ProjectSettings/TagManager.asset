@@ -14,9 +14,9 @@ TagManager:
   - Enemies
   - Pickables
   - Projectiles
-  - Environment
+  - EnvironmentAbsorbing
   - EnvironmentBouncing
-  - 
+  - EnvironmentWall
   - 
   - 
   - 

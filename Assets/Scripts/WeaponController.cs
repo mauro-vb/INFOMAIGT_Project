@@ -11,6 +11,7 @@ public class WeaponController : MonoBehaviour
     public ResourceController resource; /* To be added from the editor */
 
     private CircleCollider2D objectCollider;
+    private Rigidbody2D rb;
 
     private Vector2 gizmosDir;
     private Vector2 gizmosSpawnPosition;
@@ -18,6 +19,7 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         objectCollider = GetComponent<CircleCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnDrawGizmos()
@@ -38,11 +40,19 @@ public class WeaponController : MonoBehaviour
         /* Shoot on click */
         if (Input.GetMouseButtonDown(0))
         {
-            Vector2 dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+            Vector3 dir3D = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+            Vector2 dir = new Vector2(dir3D.x, dir3D.y).normalized;
             float angle = Mathf.Acos(Vector2.Dot(dir, Vector2.right));
+            
+            /* Recoil - might be nice */
+            // if (rb)
+            // {
+            //     rb.AddForce(-dir * 5.0f, ForceMode2D.Impulse);
+            // }
 
+            /* Spawn the bullet */
             /* spawn position should be outside so it doesn't mess up the physics */
-            float epsilon = 2.0f;
+            float epsilon = 0.2f;
             Vector2 distanceVec = dir * (objectCollider.radius + epsilon);
             gizmosDir = distanceVec;
             Vector3 spawnPosition = new Vector3(
@@ -50,6 +60,10 @@ public class WeaponController : MonoBehaviour
                 transform.position.y + distanceVec.y,
                 0
             );
+            
+            Debug.Log("DistanceVec Magnitude: " + distanceVec.magnitude);
+            Debug.Log("SpawnPosition: " + spawnPosition);
+            
 
             gizmosSpawnPosition = new Vector2(spawnPosition.x, spawnPosition.y);
 

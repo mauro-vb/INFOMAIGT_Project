@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82219a50981540caa47c1a7c6907de2b, type: 3}
   m_Name: WeaponData_Pistol
   m_EditorClassIdentifier: 
-  resourceCost: 1
+  resourceCost: 10
   projectilesPerShot: 1
   spreadAngle: 0
-  projectileSpeed: 20
+  projectileSpeed: 5
   shootCooldown: 0.5

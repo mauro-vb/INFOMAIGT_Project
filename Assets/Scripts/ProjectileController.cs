@@ -10,22 +10,25 @@ public class ProjectileController : MonoBehaviour
     private Rigidbody2D rb;
 
     public int damage = 5;
+    
+    /* Kinda hacky but meh */
+    // private bool canCollidePlayer
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
     }
 
     // Update is called once per frame
     void Update()
     {
         /* Move */
-        rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == Layers.ENVIRONMENT || other.gameObject.layer == Layers.ENEMIES)
+        if (other.gameObject.layer == Layers.ENVIRONMENT_ABSORBING || other.gameObject.layer == Layers.ENEMIES)
         {
             Destroy(gameObject);
         }
@@ -47,6 +50,12 @@ public class ProjectileController : MonoBehaviour
             Vector2 reflectedVelocity = Vector2.Reflect(dir, collisionNormal);
 
             dir = reflectedVelocity;
+            rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
+        }
+
+        if (other.gameObject.layer == Layers.ENVIRONMENT_WALL)
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 }
