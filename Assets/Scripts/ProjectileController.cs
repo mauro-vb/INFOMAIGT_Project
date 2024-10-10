@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    public int resourceCost = 10;
     public float speed = 2.5f;
     public Vector2 dir = Vector2.up;
 
@@ -26,6 +27,16 @@ public class ProjectileController : MonoBehaviour
     {
         if (other.gameObject.layer == Layers.ENVIRONMENT || other.gameObject.layer == Layers.ENEMIES)
         {
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.layer == Layers.PLAYER)
+        {
+            var playerResource = other.gameObject.GetComponent<ResourceController>();
+            if (playerResource)
+            {
+                playerResource.currentResource += resourceCost;
+            }
             Destroy(gameObject);
         }
 

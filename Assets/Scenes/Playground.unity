@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3501363217227900097, guid: 03283ca0240974ee9a6309416ece0497, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
-      value: 256
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7858707424586419071, guid: 03283ca0240974ee9a6309416ece0497, type: 3}
       propertyPath: m_LocalPosition.x
@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -287,6 +288,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5185fa2f1804591baf622e9fafce7f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToFollow: {fileID: 1451567509}
 --- !u!1 &670020578
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7546760745271253357, guid: bfae7a0e0fb12496781b478f828dc744, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.78
+      value: -8.72
       objectReference: {fileID: 0}
     - target: {fileID: 7546760745271253357, guid: bfae7a0e0fb12496781b478f828dc744, type: 3}
       propertyPath: m_LocalPosition.z
@@ -454,6 +468,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1929436707239439994, guid: 5ce0805e5d8f74708a3918d1969007c7, type: 3}
   m_PrefabInstance: {fileID: 1805121813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1451567509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 921344628363260343, guid: 03283ca0240974ee9a6309416ece0497, type: 3}
+  m_PrefabInstance: {fileID: 406798381}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1572866023 stripped
 Transform:
