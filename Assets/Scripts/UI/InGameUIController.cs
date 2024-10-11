@@ -15,25 +15,7 @@ public class InGameUIController : MonoBehaviour
 
     private Scene scene;
 
-    private Vector2 g0, g1, g2, g3;
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(Vector3.zero, new Vector3(g0.x, g0.y, 0));
-
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(Vector3.zero, new Vector3(g1.x, g1.y, 0));
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(playerCamera.transform.position,
-            new Vector3(g2.x, g2.y, 0));
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(playerCamera.transform.position,
-            new Vector3(g3.x, g3.y, 0));
-    }
+    private readonly float PROJECTILE_MAX_DISTANCE = 20.0f;
 
     private void Start()
     {
@@ -56,13 +38,13 @@ public class InGameUIController : MonoBehaviour
             var p = item.Key;
             var w = item.Value;
 
-            /* Set size based on distance from camera view */
-
-            /* Set position around camera's boundaries */
-            Vector2 dir = new Vector2(
+            Vector2 vecToP = new Vector2(
                 p.transform.position.x - playerCamera.transform.position.x,
                 p.transform.position.y - playerCamera.transform.position.y
-            ).normalized;
+            );
+
+            /* Set position around camera's boundaries */
+            Vector2 dir = vecToP.normalized;
 
             List<float> finalTs = new List<float>();
             /* Top camera border */
@@ -84,11 +66,29 @@ public class InGameUIController : MonoBehaviour
             if (finalTs.Count > 0)
             {
                 float finalT = finalTs.Min();
+                Vector2 wPosition = new Vector2(
+                    playerCamera.transform.position.x + (dir * finalT).x,
+                    playerCamera.transform.position.y + (dir * finalT).y
+                );
 
                 w.transform.position = new Vector3(
-                    playerCamera.transform.position.x + (dir * finalT).x,
-                    playerCamera.transform.position.y + (dir * finalT).y,
+                    wPosition.x,
+                    wPosition.y,
                     0
+                );
+
+                /* Set size based on distance from camera view */
+                float distance = (vecToP - wPosition).magnitude;
+
+                float ratio = 1 - (distance / PROJECTILE_MAX_DISTANCE);
+
+                if (ratio < 0.1f) ratio = 0.1f;
+                if (ratio > 1.0f) ratio = 1.0f;
+
+                w.transform.localScale = new Vector3(
+                    ratio,
+                    ratio,
+                    1
                 );
             }
         }
