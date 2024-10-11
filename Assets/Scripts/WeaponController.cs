@@ -22,17 +22,17 @@ public class WeaponController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawRay(Vector3.zero, transform.position);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(Vector3.zero, gizmosDir);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(Vector3.zero, gizmosSpawnPosition);
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.magenta;
+    //     Gizmos.DrawRay(Vector3.zero, transform.position);
+    //
+    //     Gizmos.color = Color.blue;
+    //     Gizmos.DrawRay(Vector3.zero, gizmosDir);
+    //
+    //     Gizmos.color = Color.yellow;
+    //     Gizmos.DrawRay(Vector3.zero, gizmosSpawnPosition);
+    // }
 
     // Update is called once per frame
     void Update()
