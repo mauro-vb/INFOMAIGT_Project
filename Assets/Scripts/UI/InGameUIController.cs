@@ -9,7 +9,6 @@ public class InGameUIController : MonoBehaviour
 {
     public Camera playerCamera;
     public GameObject projectileWidgetPrefab;
-    public Canvas canvas;
 
     private Dictionary<GameObject, GameObject> projectilesWidgets;
 
@@ -71,13 +70,7 @@ public class InGameUIController : MonoBehaviour
                     playerCamera.transform.position.y + (dir * finalT).y
                 );
 
-                w.transform.position = new Vector3(
-                    wPosition.x,
-                    wPosition.y,
-                    0
-                );
-
-                /* Set size based on distance from camera view */
+                /* Set scale based on distance from camera view */
                 float distance = (vecToP - wPosition).magnitude;
 
                 float ratio = 1 - (distance / PROJECTILE_MAX_DISTANCE);
@@ -89,6 +82,21 @@ public class InGameUIController : MonoBehaviour
                     ratio,
                     ratio,
                     1
+                );
+
+                /* Adjust position of widget so that it s fully visible */
+                // TODO: It's 2AM and I'm tired, fk it. Very inefficient, maybe think of a better way. 
+                var sp = w.gameObject.GetComponent<SpriteRenderer>();
+                var x = (sp.size.x * w.transform.localScale.x) / 2;
+                var y = (sp.size.y / 2 * w.transform.localScale.y) / 2;
+                float positionAdjust = Mathf.Sqrt(x * x + y * y);
+
+                wPosition += -dir * positionAdjust;
+
+                w.transform.position = new Vector3(
+                    wPosition.x,
+                    wPosition.y,
+                    0
                 );
             }
         }
@@ -128,7 +136,7 @@ public class InGameUIController : MonoBehaviour
                 /* Create a widget if projectile is not visible */
                 if (!isVisible && !projectilesWidgets.ContainsKey(pr))
                 {
-                    projectilesWidgets.Add(pr, Instantiate(projectileWidgetPrefab, canvas.transform));
+                    projectilesWidgets.Add(pr, Instantiate(projectileWidgetPrefab));
                 }
                 else if (isVisible && projectilesWidgets.ContainsKey(pr))
                 {
