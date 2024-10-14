@@ -5,9 +5,11 @@ public class ProjectileController : MonoBehaviour
 {
     public int resourceCost = 10;
     public float speed = 2.5f;
+    public float rotationSpeed = 2.5f;
     public Vector2 dir = Vector2.up;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     public int damage = 5;
 
@@ -16,6 +18,7 @@ public class ProjectileController : MonoBehaviour
 
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
     }
@@ -23,7 +26,10 @@ public class ProjectileController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /* Move */
+        if (rb.velocity != Vector2.zero)
+        {
+            transform.rotation *= Quaternion.Euler(0, 0, Time.deltaTime * rotationSpeed);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 2145e0cc8a1994be6963e316605a7a5e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e9ef1d648d3b7e44935bb0c0be55dee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceCost: 10
   speed: 0.5
+  rotationSpeed: -210.4
   dir: {x: 0, y: 1}
   damage: 5
 --- !u!58 &5955314725982358786
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6459704280357819788}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7da1d263e734811847eeb1512b996b0, type: 3}
   m_Name: 
