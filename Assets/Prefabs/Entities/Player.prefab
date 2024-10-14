@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 2145e0cc8a1994be6963e316605a7a5e, type: 3}
+  m_Sprite: {fileID: -2042638485, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,8 +100,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04928243f4f9f4e23b103851be516fa5, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardSprites:
+  - {fileID: -2042638485, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: 897165712, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: -1670470308, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: -280743531, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: 48847357, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  sidewaysSprites:
+  - {fileID: 1453963431, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: -39912013, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: -1598782283, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: 1283644242, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: -2110550719, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  backwardSprites:
+  - {fileID: 991222373, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: 1290011771, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: 280242252, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: 1351191850, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  - {fileID: 1350412167, guid: 5ceb94afdee3f6d4faffa2dad4f75143, type: 3}
+  animationSpeed: 0.1
   moveSpeed: 5
 --- !u!114 &7744851248944594906
 MonoBehaviour:
@@ -113,8 +132,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed1f7ab2860d42deb14432afd7ce82ca, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 63e52c880474d4910bfec2ce74178b62, type: 2}
   projectilePrefab: {fileID: 6459704280357819788, guid: 95863f13ab9084250a7e2258985bc136, type: 3}
   resource: {fileID: 955488485120757235}
@@ -128,8 +147,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7da1d263e734811847eeb1512b996b0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   resource: {fileID: 955488485120757235}
 --- !u!114 &955488485120757235
 MonoBehaviour:
@@ -141,8 +160,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b36aa689684defae4206318efc465e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   maxResource: 100
   currentResource: 100
 --- !u!50 &3501363217227900097
