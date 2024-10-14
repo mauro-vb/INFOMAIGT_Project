@@ -13,11 +13,22 @@ public class ProjectileController : MonoBehaviour
 
     /* Kinda hacky but meh */
     // private bool canCollidePlayer
+    private PlayerControlsManager playerControlsManager;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerControlsManager = player.GetComponent<PlayerControlsManager>();
+            if (playerControlsManager != null)
+            {
+                playerControlsManager.RegisterResourceController(GetComponent<ResourceController>());
+            }
+        }
+        Debug.Log(playerControlsManager);
     }
 
     // Update is called once per frame
@@ -30,6 +41,7 @@ public class ProjectileController : MonoBehaviour
     {
         if (other.gameObject.layer == Layers.ENVIRONMENT_ABSORBING || other.gameObject.layer == Layers.ENEMIES)
         {
+            playerControlsManager.UnregisterResourceController(GetComponent<ResourceController>());
             Destroy(gameObject);
         }
 
@@ -52,7 +64,9 @@ public class ProjectileController : MonoBehaviour
                 if (bulletResource)
                 {
                     bulletResource.currentResource += GetComponent<ResourceController>().currentResource;
+                    playerControlsManager.RegisterResourceController(bulletResource);
                 }
+                playerControlsManager.UnregisterResourceController(GetComponent<ResourceController>());
                 Destroy(gameObject);
             }
         }

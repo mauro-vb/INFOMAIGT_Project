@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 955488485120757235}
   - component: {fileID: 3501363217227900097}
   - component: {fileID: 8876150720013509936}
+  - component: {fileID: 3935616569847363926}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -100,8 +101,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04928243f4f9f4e23b103851be516fa5, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   moveSpeed: 5
 --- !u!114 &7744851248944594906
 MonoBehaviour:
@@ -113,8 +114,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed1f7ab2860d42deb14432afd7ce82ca, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 63e52c880474d4910bfec2ce74178b62, type: 2}
   projectilePrefab: {fileID: 6459704280357819788, guid: 95863f13ab9084250a7e2258985bc136, type: 3}
   resource: {fileID: 955488485120757235}
@@ -128,8 +129,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7da1d263e734811847eeb1512b996b0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   resource: {fileID: 955488485120757235}
 --- !u!114 &955488485120757235
 MonoBehaviour:
@@ -141,8 +142,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b36aa689684defae4206318efc465e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   maxResource: 100
   currentResource: 100
 --- !u!50 &3501363217227900097
@@ -207,3 +208,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3935616569847363926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921344628363260343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb11db3d1d9f94b689da768c514636a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}

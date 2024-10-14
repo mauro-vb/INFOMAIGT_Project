@@ -36,12 +36,12 @@ public class InGameUIController : MonoBehaviour
         {
             var p = item.Key;
             var w = item.Value;
-
+            if (p != null)
+            {
             Vector2 vecToP = new Vector2(
                 p.transform.position.x - playerCamera.transform.position.x,
                 p.transform.position.y - playerCamera.transform.position.y
             );
-
             /* Set position around camera's boundaries */
             Vector2 dir = vecToP.normalized;
 
@@ -85,7 +85,7 @@ public class InGameUIController : MonoBehaviour
                 );
 
                 /* Adjust position of widget so that it s fully visible */
-                // TODO: It's 2AM and I'm tired, fk it. Very inefficient, maybe think of a better way. 
+                // TODO: It's 2AM and I'm tired, fk it. Very inefficient, maybe think of a better way.
                 var sp = w.gameObject.GetComponent<SpriteRenderer>();
                 var x = (sp.size.x * w.transform.localScale.x) / 2;
                 var y = (sp.size.y / 2 * w.transform.localScale.y) / 2;
@@ -98,6 +98,7 @@ public class InGameUIController : MonoBehaviour
                     wPosition.y,
                     0
                 );
+            }
             }
         }
     }
