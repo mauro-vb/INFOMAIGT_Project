@@ -8,22 +8,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD:Assets/PickableUpgrade.prefab
-  - component: {fileID: 1889450863846578469}
-  - component: {fileID: 3919845425043048800}
-  - component: {fileID: 5608519132621671484}
-  - component: {fileID: 2878897010479445480}
-  m_Layer: 7
-  m_Name: PickableUpgrade
-=======
   - component: {fileID: 1047280839991002646}
   - component: {fileID: 9060405457643330764}
   - component: {fileID: 4463875934201285289}
   - component: {fileID: 5955314725982358786}
   - component: {fileID: 9163757284920433265}
+  - component: {fileID: -7311957356849300073}
+  - component: {fileID: 2134538188813874968}
   m_Layer: 8
   m_Name: ProjectilePistol
->>>>>>> 90e0a35e08904c7100355f649a2a6a1e5c5691b3:Assets/Prefabs/Projectiles/ProjectilePistol.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,19 +147,6 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:Assets/PickableUpgrade.prefab
-  m_GameObject: {fileID: 7710927186228807351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1821d5e793941528224605a2d4002c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeType: 0
-  value: 1
-  weaponType: {fileID: 0}
-  resourceColor: {r: 0, g: 1, b: 0, a: 1}
-  weaponChangeColor: {r: 1, g: 0, b: 0, a: 1}
-=======
   m_GameObject: {fileID: 6459704280357819788}
   m_BodyType: 0
   m_Simulated: 1
@@ -187,4 +167,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
->>>>>>> 90e0a35e08904c7100355f649a2a6a1e5c5691b3:Assets/Prefabs/Projectiles/ProjectilePistol.prefab
+--- !u!114 &-7311957356849300073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6459704280357819788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b36aa689684defae4206318efc465e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxResource: 100
+  currentResource: 10
+--- !u!114 &2134538188813874968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6459704280357819788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7da1d263e734811847eeb1512b996b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resource: {fileID: -7311957356849300073}

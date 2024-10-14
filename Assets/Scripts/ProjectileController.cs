@@ -10,7 +10,7 @@ public class ProjectileController : MonoBehaviour
     private Rigidbody2D rb;
 
     public int damage = 5;
-    
+
     /* Kinda hacky but meh */
     // private bool canCollidePlayer
 
@@ -38,9 +38,23 @@ public class ProjectileController : MonoBehaviour
             var playerResource = other.gameObject.GetComponent<ResourceController>();
             if (playerResource)
             {
-                playerResource.currentResource += resourceCost;
+                playerResource.currentResource += GetComponent<ResourceController>().currentResource;
             }
             Destroy(gameObject);
+        }
+
+        if (other.gameObject.layer == Layers.PROJECTILES)
+        {
+            // Ensure that only one of the two projectiles handles the collision.
+            if (GetInstanceID() < other.gameObject.GetInstanceID())
+            {
+                var bulletResource = other.gameObject.GetComponent<ResourceController>();
+                if (bulletResource)
+                {
+                    bulletResource.currentResource += GetComponent<ResourceController>().currentResource;
+                }
+                Destroy(gameObject);
+            }
         }
 
         if (other.gameObject.layer == Layers.ENVIRONMENT_BOUNCING)
