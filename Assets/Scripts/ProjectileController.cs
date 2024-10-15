@@ -28,7 +28,6 @@ public class ProjectileController : MonoBehaviour
                 playerControlsManager.RegisterResourceController(GetComponent<ResourceController>());
             }
         }
-        Debug.Log(playerControlsManager);
     }
 
     // Update is called once per frame
