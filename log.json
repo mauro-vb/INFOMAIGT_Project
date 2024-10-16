@@ -1,0 +1,11 @@
+{
+    "player": {
+        "instanceID": 38470
+    },
+    "totalTimeToClearLevel": 10.002030372619629,
+    "totalShotsFired": 4,
+    "totalShotsHit": 0,
+    "healthLeftAtEnd": 60.0,
+    "healthPacksPickedUp": 0,
+    "shotsWhileMoving": 2.0
+}

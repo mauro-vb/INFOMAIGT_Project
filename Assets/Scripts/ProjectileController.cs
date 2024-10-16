@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    // defining the event for when a projectile (health) is collected by player
+    public static event Action OnProjectileCollected;
+    
     public int resourceCost = 10;
     public float speed = 2.5f;
     public Vector2 dir = Vector2.up;
@@ -38,6 +41,9 @@ public class ProjectileController : MonoBehaviour
             var playerResource = other.gameObject.GetComponent<ResourceController>();
             if (playerResource)
             {
+                // triggering the collection event
+                OnProjectileCollected?.Invoke();
+                
                 playerResource.currentResource += GetComponent<ResourceController>().currentResource;
             }
             Destroy(gameObject);
@@ -50,7 +56,7 @@ public class ProjectileController : MonoBehaviour
             {
                 var bulletResource = other.gameObject.GetComponent<ResourceController>();
                 if (bulletResource)
-                {
+                {                    
                     bulletResource.currentResource += GetComponent<ResourceController>().currentResource;
                 }
                 Destroy(gameObject);
