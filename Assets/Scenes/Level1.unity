@@ -888,6 +888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3248355693989349629, guid: a16c3cc080efd4b54b90c2c85b871429, type: 3}
+      propertyPath: currentResource
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1014,6 +1018,10 @@ PrefabInstance:
     - target: {fileID: 2740789658496399870, guid: a16c3cc080efd4b54b90c2c85b871429, type: 3}
       propertyPath: m_Name
       value: SimpleEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3248355693989349629, guid: a16c3cc080efd4b54b90c2c85b871429, type: 3}
+      propertyPath: currentResource
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
