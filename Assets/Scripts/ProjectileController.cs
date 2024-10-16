@@ -14,6 +14,8 @@ public class ProjectileController : MonoBehaviour
 
     public int damage = 5;
 
+    public Vector3 launchPosition;
+
     /* Kinda hacky but meh */
     // private bool canCollidePlayer
 
@@ -21,6 +23,8 @@ public class ProjectileController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
+
+        launchPosition = transform.position;
     }
 
     // Update is called once per frame

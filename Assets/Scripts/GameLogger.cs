@@ -15,13 +15,13 @@ public class GameLogger : MonoBehaviour
     public int healthPacksPickedUp;
     public float shotsWhileMoving;
     // public Vector2 movementTicks;  // Vector2 to store movement ticks (x: left/right, y: up/down)
-    // public float idleTimeBeforeLevel;
+    public float idleTimeBeforeLevel;
     // public float timeSpentBehindWalls;
     // public float timeSpentInCorners;
     // public float timeSpentFighting;
-    // public float averageDistanceFromTarget;
+    public float averageDistanceFromTarget; // cumulative, you need to divide this by totalShotsHit to get the average
     // public int powerUpsPickedUp;
-    // public float damageTaken;
+    public float damageTaken;
     // public int numberOfTries;
 
 

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     private GameLogger logger;
     public GameObject player;
     private string logFilePath = "log.json";
-    private float startTime;
+    public float startTime;
 
     void Start()
     {
