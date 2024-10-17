@@ -23,10 +23,10 @@ public class ProjectileController : MonoBehaviour
         if (player != null)
         {
             playerControlsManager = player.GetComponent<PlayerControlsManager>();
-            if (playerControlsManager != null)
-            {
-                playerControlsManager.RegisterResourceController(GetComponent<ResourceController>());
-            }
+            // if (playerControlsManager != null)
+            // {
+            //     playerControlsManager.RegisterResourceController(GetComponent<ResourceController>());
+            // }
         }
     }
 
