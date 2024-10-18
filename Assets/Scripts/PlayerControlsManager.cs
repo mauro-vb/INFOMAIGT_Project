@@ -16,16 +16,14 @@ public class PlayerControlsManager : MonoBehaviour
     public void RegisterResourceController(ResourceController resourceController)
     {
         allFriendlyResourceControllers.Add(resourceController);
-        FindLargestResourceController();
     }
 
     public void UnregisterResourceController(ResourceController resourceController)
     {
         allFriendlyResourceControllers.Remove(resourceController);
-        FindLargestResourceController();
     }
 
-    private void FindLargestResourceController()
+    public void FindLargestResourceController()
     {
         if (allFriendlyResourceControllers == null || allFriendlyResourceControllers.Count == 0) return;
 

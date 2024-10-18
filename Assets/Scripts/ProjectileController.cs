@@ -72,6 +72,7 @@ public class ProjectileController : MonoBehaviour
                 }
                 playerControlsManager.UnregisterResourceController(GetComponent<ResourceController>());
                 Destroy(gameObject);
+                playerControlsManager.FindLargestResourceController();
             }
         }
 

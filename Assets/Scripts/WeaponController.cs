@@ -52,7 +52,7 @@ public class WeaponController : MonoBehaviour
 
             /* Spawn the bullet */
             /* spawn position should be outside so it doesn't mess up the physics */
-            float epsilon = 0.2f;
+            float epsilon = 0.3f;
             Vector2 distanceVec = dir * (objectCollider.radius + epsilon);
             gizmosDir = distanceVec;
             Vector3 spawnPosition = new Vector3(
