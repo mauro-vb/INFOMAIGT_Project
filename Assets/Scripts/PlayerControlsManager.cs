@@ -5,6 +5,7 @@ using System.Linq;
 public class PlayerControlsManager : MonoBehaviour
 {
     public GameObject player ;
+    public GameObject inGameUI ;
     private List<ResourceController> allFriendlyResourceControllers = new List<ResourceController>();
 
     void Start()
@@ -54,5 +55,10 @@ public class PlayerControlsManager : MonoBehaviour
 
         player.transform.position = largestResourcePosition;
         largestResourceController.gameObject.transform.position = playerPosition;
+
+        if (inGameUI != null)
+        {
+          inGameUI.GetComponent<InGameUIController>().RestartAllWidgets();
+        }
     }
 }

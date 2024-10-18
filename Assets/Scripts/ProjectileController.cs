@@ -60,10 +60,15 @@ public class ProjectileController : MonoBehaviour
             if (GetInstanceID() < other.gameObject.GetInstanceID())
             {
                 var bulletResource = other.gameObject.GetComponent<ResourceController>();
+                var rigidBody = other.gameObject.GetComponent<Rigidbody2D>();
                 if (bulletResource)
                 {
                     bulletResource.currentResource += GetComponent<ResourceController>().currentResource;
                     playerControlsManager.RegisterResourceController(bulletResource);
+                }
+                if (rigidBody)
+                {
+                  rigidBody.velocity = new Vector2(0,0);
                 }
                 playerControlsManager.UnregisterResourceController(GetComponent<ResourceController>());
                 Destroy(gameObject);
