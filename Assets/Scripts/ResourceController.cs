@@ -37,7 +37,7 @@ public class ResourceController : MonoBehaviour
                 if (hpDisplay != null)
                 {
                     hpDisplay.text = "DEAD";
-                    hpDisplay.color = new Color(1f, 0.6f, 0.6f);
+                    hpDisplay.color = new Color(1f, 0.4f, 0.4f);
                 }
             }
         }
