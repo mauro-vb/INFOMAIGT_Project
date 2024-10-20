@@ -5,6 +5,9 @@ using Color = UnityEngine.Color;
 
 public class WeaponController : MonoBehaviour
 {
+    // Defining the event for shooting
+    public static event Action OnPlayerShoot;
+    
     public WeaponData weaponData;
     public GameObject projectilePrefab;
 
@@ -75,6 +78,9 @@ public class WeaponController : MonoBehaviour
                 projectile.dir = dir;
                 projectile.resourceCost = weaponData.resourceCost;
             }
+
+            // Triggering the shooting event
+            OnPlayerShoot?.Invoke();
 
             /* Decrease resource */
             resource.currentResource -= weaponData.resourceCost;
