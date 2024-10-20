@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class Questionnaire : MonoBehaviour
 {
-    public List<QCheckbox> questions;
+    public List<IQuestion> questions;
     public GameObject errorLog;
 
     private void Start()
@@ -26,11 +26,23 @@ public class Questionnaire : MonoBehaviour
         {
             foreach (var question in questions)
             {
-                if (question.answer == -1)
+                if (question.GetType() == typeof(QCheckbox))
                 {
-                    StartCoroutine(nameof(ShowError));
-                    /* TODO: Scroll to question and some UX */
-                    return;
+                    if (((QCheckbox)question).answer == -1)
+                    {
+                        StartCoroutine(nameof(ShowError));
+                        /* TODO: Scroll to question and some UX */
+                        return;
+                    }
+                }
+                else if (question.GetType() == typeof(QOpen))
+                {
+                    if (((QOpen)question).answer == "")
+                    {
+                        StartCoroutine(nameof(ShowError));
+                        /* TODO: Scroll to question and some UX */
+                        return;
+                    }
                 }
             }
 
@@ -50,7 +62,17 @@ public class Questionnaire : MonoBehaviour
             body += "No.Crt,Question,Answer\n";
             for (int i = 0; i < questions.Count; i++)
             {
-                body += i + "," + questions[i].question + "," + questions[i].answer + "\n";
+                body += i + "," + questions[i].question;
+                if (questions[i].GetType() == typeof(QCheckbox))
+                {
+                    body += "," + ((QCheckbox)questions[i]).answer;
+                }
+                else if (questions[i].GetType() == typeof(QOpen))
+                {
+                    body += "," + ((QOpen)questions[i]).answer;
+                }
+
+                body += "\n";
             }
 
             MailSender.SendEmail(subject, emailTo, body);
