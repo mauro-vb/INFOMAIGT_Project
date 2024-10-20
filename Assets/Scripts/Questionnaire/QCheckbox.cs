@@ -1,14 +1,22 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class QCheckbox : MonoBehaviour
 {
     public int answer = -1;
     public List<Checkbox> checkboxes;
+    public string question;
+
+    public TMP_Text tmPro;
+
+    private void Start()
+    {
+        if (tmPro)
+        {
+            tmPro.text = question;
+        }
+    }
 
     public void OnCheckboxClick(Checkbox checkbox)
     {
