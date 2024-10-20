@@ -48,6 +48,6 @@ public class GameManager : MonoBehaviour
     {
         string jsonData = JsonUtility.ToJson(logger, true);  // 'true' for pretty-printing
         System.IO.File.WriteAllText(filePath, jsonData);
-        Debug.Log("Player stats saved to " + filePath);
+        //Debug.Log("Player stats saved to " + filePath);
     }
 }

@@ -35,7 +35,7 @@ public class ProjectileController : MonoBehaviour
     {
         if (rb.velocity != Vector2.zero)
         {
-            transform.rotation *= Quaternion.Euler(0, 0, Time.deltaTime * rotationSpeed);
+            //transform.rotation *= Quaternion.Euler(0, 0, Time.deltaTime * rotationSpeed);
         }
     }
 
