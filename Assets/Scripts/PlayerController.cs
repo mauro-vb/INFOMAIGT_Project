@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+	private ResourceController rc;
 
     public Sprite[] forwardSprites;
     public Sprite[] sidewaysSprites;
@@ -17,12 +18,13 @@ public class PlayerController : MonoBehaviour
    
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rc = GetComponent<ResourceController>();
+		rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         currentFrame = 0;
         timer = 0;
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -82,6 +84,14 @@ public class PlayerController : MonoBehaviour
                 currentFrame = 0;
             }
             timer = 0f;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.layer == Layers.ENVIRONMENT_ABSORBING || other.gameObject.layer == Layers.ENEMIES)
+        {
+            rc.currentResource -= 10;
         }
     }
 }

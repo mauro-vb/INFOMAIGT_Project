@@ -11,7 +11,7 @@ public class SizeController : MonoBehaviour
     private float lightVal;
     private float radiusVal;
 
-    
+
     public void Start()
     {
         lightComponent = GetComponentInChildren<Light2D>();
@@ -25,7 +25,7 @@ public class SizeController : MonoBehaviour
     public void Update()
     {
         /* Set scale based on current resource */
-        float ratio = (float)resource.currentResource / resource.maxResource;
+        float ratio = 0.15f + 0.85f * (float)resource.currentResource / resource.maxResource;
         if (lightComponent != null)
         {
             lightComponent.intensity = lightVal - (lightVal * lightMult * (1 - ratio));

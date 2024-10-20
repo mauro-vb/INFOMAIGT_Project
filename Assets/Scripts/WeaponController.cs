@@ -41,12 +41,12 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         /* Shoot on click */
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && resource.currentResource > weaponData.resourceCost)
         {
             Vector3 dir3D = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
             Vector2 dir = new Vector2(dir3D.x, dir3D.y).normalized;
             float angle = Mathf.Acos(Vector2.Dot(dir, Vector2.right));
-            
+
             /* Recoil - might be nice */
             // if (rb)
             // {
@@ -55,15 +55,15 @@ public class WeaponController : MonoBehaviour
 
             /* Spawn the bullet */
             /* spawn position should be outside so it doesn't mess up the physics */
-            float epsilon = 0.2f;
-            Vector2 distanceVec = dir * (objectCollider.radius + epsilon);
+            float epsilon = 0.1f;
+            Vector2 distanceVec = dir * (objectCollider.radius * gameObject.transform.localScale.x + epsilon);
             gizmosDir = distanceVec;
             Vector3 spawnPosition = new Vector3(
                 transform.position.x + distanceVec.x,
                 transform.position.y + distanceVec.y,
                 0
             );
-            
+
 
             gizmosSpawnPosition = new Vector2(spawnPosition.x, spawnPosition.y);
 
