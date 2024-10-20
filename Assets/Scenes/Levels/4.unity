@@ -645,16 +645,20 @@ PrefabInstance:
       value: PlayerDelimeter
       objectReference: {fileID: 0}
     - target: {fileID: 7546760745271253357, guid: c3029566ce11b447c9dea7349f9f4bdf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.71898
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546760745271253357, guid: c3029566ce11b447c9dea7349f9f4bdf, type: 3}
       propertyPath: m_LocalScale.y
       value: 4.7220187
       objectReference: {fileID: 0}
     - target: {fileID: 7546760745271253357, guid: c3029566ce11b447c9dea7349f9f4bdf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.0132
+      value: 4.0131
       objectReference: {fileID: 0}
     - target: {fileID: 7546760745271253357, guid: c3029566ce11b447c9dea7349f9f4bdf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.4312
+      value: -1.6907
       objectReference: {fileID: 0}
     - target: {fileID: 7546760745271253357, guid: c3029566ce11b447c9dea7349f9f4bdf, type: 3}
       propertyPath: m_LocalPosition.z
