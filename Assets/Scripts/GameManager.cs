@@ -40,7 +40,14 @@ public class GameManager : MonoBehaviour
     {
         float timeElapsed = Time.time - startTime;
         logger.totalTimeToClearLevel = timeElapsed;
-        logger.healthLeftAtEnd = player.GetComponent<ResourceController>().currentResource;
+        if (player != null)
+        {
+            logger.healthLeftAtEnd = player.GetComponent<ResourceController>().currentResource;
+        }
+        else
+        {
+            logger.healthLeftAtEnd = 0;
+        }
         SaveStatsToJSON(logFilePath);
     }
 

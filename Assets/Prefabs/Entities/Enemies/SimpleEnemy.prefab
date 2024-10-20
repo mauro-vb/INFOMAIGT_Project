@@ -79,8 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 2145e0cc8a1994be6963e316605a7a5e, type: 3}
-  m_Color: {r: 0.8490566, g: 0.07609467, b: 0.07609467, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e164737cfad01d34baa797baad5aa0a3, type: 3}
+  m_Color: {r: 0.9056604, g: 0.6407974, b: 0.6407974, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resource: {fileID: 3248355693989349629}
+  lightMult: 1
 --- !u!58 &8188742963848192551
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -243,7 +244,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 0.84952295, b: 0.66981125, a: 1}
-  m_Intensity: 2.5
+  m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -265,7 +266,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 8.27
+  m_PointLightOuterRadius: 5.63
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

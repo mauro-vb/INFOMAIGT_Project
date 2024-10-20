@@ -9,19 +9,22 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        // Get the desired position based on the object to follow
-        float targetX = ObjectToFollow.transform.position.x;
-        float targetY = ObjectToFollow.transform.position.y;
+        if (ObjectToFollow != null)
+        {
+            // Get the desired position based on the object to follow
+            float targetX = ObjectToFollow.transform.position.x;
+            float targetY = ObjectToFollow.transform.position.y;
 
-        // Clamp the camera's X and Y positions to stay within the defined limits
-        float clampedX = Mathf.Clamp(targetX, minPosition.x, maxPosition.x);
-        float clampedY = Mathf.Clamp(targetY, minPosition.y, maxPosition.y);
+            // Clamp the camera's X and Y positions to stay within the defined limits
+            float clampedX = Mathf.Clamp(targetX, minPosition.x, maxPosition.x);
+            float clampedY = Mathf.Clamp(targetY, minPosition.y, maxPosition.y);
 
-        // Apply the clamped position to the camera
-        transform.position = new Vector3(
-            clampedX,  // Limit the X position
-            clampedY,  // Limit the Y position
-            transform.position.z  // Keep the current Z position (assuming this is a 2D camera)
-        );
+            // Apply the clamped position to the camera
+            transform.position = new Vector3(
+                clampedX,  // Limit the X position
+                clampedY,  // Limit the Y position
+                transform.position.z  // Keep the current Z position (assuming this is a 2D camera)
+            );
+        }
     }
 }
