@@ -7,6 +7,8 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> objectsToRemove; // List of enemies that need to be removed to win
     public GameObject player;                // Reference to the player object
 
+    public bool loadQuestionnaireAfterScene = true;
+
     private GameObject winScreen; // Reference to the win screen panel
     private GameObject loseScreen; // Reference to the lose screen panel
 
@@ -73,40 +75,21 @@ public class LevelManager : MonoBehaviour
         
             if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
             {
-                // Load the next scene
-                SceneManager.LoadScene(nextSceneIndex);
+                if (loadQuestionnaireAfterScene)
+                {
+                    SceneManager.LoadScene("Scenes/Questionnaire", LoadSceneMode.Single);
+                }
+                else
+                {
+                    // Load the next scene
+                    SceneManager.LoadScene(nextSceneIndex);
+                }
             }
             else
             {
                 // Optionally, if you're at the last scene, you can loop back to the first
                 winScreen.SetActive(true); // Show win screen
             }
-            
-            // // Get the current scene name
-            // string currentSceneName = SceneManager.GetActiveScene().name;
-            //
-            // // Check if the scene name is a number
-            // if (int.TryParse(currentSceneName, out int currentSceneNumber))
-            // {
-            //     // Increment the scene number by 1
-            //     int nextSceneNumber = currentSceneNumber + 1;
-            //     string nextSceneName = nextSceneNumber.ToString();
-            //
-            //     // Check if the scene with the incremented number exists
-            //     if (Application.CanStreamedLevelBeLoaded(nextSceneName))
-            //     {
-            //         // Load the next scene
-            //         SceneManager.LoadScene(nextSceneName);
-            //     }
-            //     else
-            //     {
-            //         winScreen.SetActive(true); // Show win screen
-            //     }
-            // }
-            // else
-            // {
-            //     winScreen.SetActive(true); // Show win screen
-            // }
         }
         else
         {

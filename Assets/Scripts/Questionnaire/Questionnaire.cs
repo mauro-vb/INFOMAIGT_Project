@@ -21,8 +21,11 @@ public class Questionnaire : MonoBehaviour
     private void Start()
     {
         /* Get data from previous scene */
-        previousSceneName = QDataManager.Instance.SceneName;
-        
+        if (QDataManager.Instance != null)
+        {
+            previousSceneName = QDataManager.Instance.CurrentSceneName;
+        }
+
         mailSender = new MailSender();
         if (errorLog)
         {
@@ -70,12 +73,11 @@ public class Questionnaire : MonoBehaviour
                 }
             }
 
-            SendAnswersMail();
-            /* TODO: Start next scene in the build */
+            StartCoroutine(SendAnswersMail());
         }
     }
 
-    private void SendAnswersMail()
+    private IEnumerator SendAnswersMail()
     {
         string body = "Data for level " + previousSceneName + "<br/><br/>";
         if (questions != null)
@@ -113,6 +115,13 @@ public class Questionnaire : MonoBehaviour
             bodyData.Messages = new List<MailSender.EmailData>();
             bodyData.Messages.Add(emailData);
             StartCoroutine(mailSender.SendEmail(bodyData, OnQuestionnaireComplete));
+            
+            yield return new WaitForSeconds(2f);
+
+            if (QDataManager.Instance != null)
+            {
+                SceneManager.LoadScene(QDataManager.Instance.NextSceneName);
+            }
         }
     }
 
