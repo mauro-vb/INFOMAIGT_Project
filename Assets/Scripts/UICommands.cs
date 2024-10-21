@@ -12,7 +12,6 @@ public class UICommands : MonoBehaviour
     }
     public void RestartLevel()
     {
-        Debug.Log("reload");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

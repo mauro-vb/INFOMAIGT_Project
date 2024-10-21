@@ -24,7 +24,13 @@ public class GameLogger : MonoBehaviour
     public float damageTaken;
     // public int numberOfTries;
 
-
+    void Start()
+    {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+        }
+    }
 
     void OnEnable()
     {
