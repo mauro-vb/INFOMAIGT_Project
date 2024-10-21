@@ -14,10 +14,15 @@ public class Questionnaire : MonoBehaviour
     public GameObject tyLog;
     public TextMeshProUGUI tyMessage;
 
+    public string previousSceneName;
+    
     private MailSender mailSender;
 
     private void Start()
     {
+        /* Get data from previous scene */
+        previousSceneName = QDataManager.Instance.SceneName;
+        
         mailSender = new MailSender();
         if (errorLog)
         {
@@ -72,7 +77,7 @@ public class Questionnaire : MonoBehaviour
 
     private void SendAnswersMail()
     {
-        string body = "";
+        string body = "Data for level " + previousSceneName + "<br/><br/>";
         if (questions != null)
         {
             /* HEADERS */

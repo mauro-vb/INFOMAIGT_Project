@@ -1,13 +1,14 @@
 {
     "player": {
-        "instanceID": 38470
+        "instanceID": 73110
     },
-    "totalTimeToClearLevel": 5.716806411743164,
-    "totalShotsFired": 2,
-    "totalShotsHit": 2,
-    "healthLeftAtEnd": 80.0,
+    "totalTimeToClearLevel": 0.0,
+    "totalShotsFired": 0,
+    "totalShotsHit": 0,
+    "healthLeftAtEnd": 0.0,
     "healthPacksPickedUp": 0,
     "shotsWhileMoving": 0.0,
-    "idleTimeBeforeLevel": 1.1811637878417969,
-    "averageDistanceFromTarget": 5.355485916137695
+    "idleTimeBeforeLevel": 0.0,
+    "averageDistanceFromTarget": 0.0,
+    "damageTaken": 0.0
 }
