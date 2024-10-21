@@ -5,10 +5,10 @@ public class ProjectileController : MonoBehaviour
 {
     // defining the event for when a projectile (health) is collected by player
     public static event Action OnProjectileCollected;
-    
+
     public int resourceCost = 10;
-    public float speed = 2.5f;
-    public float rotationSpeed = 2.5f;
+    public float speed = 0;
+    public float rotationSpeed = 0;
     public Vector2 dir = Vector2.up;
 
     private Rigidbody2D rb;
@@ -24,8 +24,10 @@ public class ProjectileController : MonoBehaviour
 
     void Start()
     {
+
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+
         rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -62,7 +64,7 @@ public class ProjectileController : MonoBehaviour
             {
                 // triggering the collection event
                 OnProjectileCollected?.Invoke();
-                
+
                 playerResource.currentResource += GetComponent<ResourceController>().currentResource;
             }
             Destroy(gameObject);
@@ -76,7 +78,7 @@ public class ProjectileController : MonoBehaviour
                 var bulletResource = other.gameObject.GetComponent<ResourceController>();
                 var rigidBody = other.gameObject.GetComponent<Rigidbody2D>();
                 if (bulletResource)
-                {                    
+                {
                     bulletResource.currentResource += GetComponent<ResourceController>().currentResource;
                     playerControlsManager.RegisterResourceController(bulletResource);
                 }
