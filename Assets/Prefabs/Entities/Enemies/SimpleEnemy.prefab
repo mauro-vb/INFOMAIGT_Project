@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e164737cfad01d34baa797baad5aa0a3, type: 3}
-  m_Color: {r: 0.9056604, g: 0.6407974, b: 0.6407974, a: 1}
+  m_Color: {r: 0.9308176, g: 0.77568126, b: 0.77568126, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxResource: 100
-  currentResource: 100
+  currentResource: 50
 --- !u!114 &4468882913422346311
 MonoBehaviour:
   m_ObjectHideFlags: 0

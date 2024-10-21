@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8992964527263965801}
   - component: {fileID: 471083928401590834}
   - component: {fileID: 6085425260882244677}
-  - component: {fileID: 2516410910860452911}
+  - component: {fileID: 8989277609726116503}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -70,7 +70,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -107,9 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToFollow: {fileID: 0}
-  minPosition: {x: -1.32, y: -6.95}
-  maxPosition: {x: 4.14, y: 0.5}
---- !u!114 &2516410910860452911
+  minPosition: {x: -1.32, y: 3.52}
+  maxPosition: {x: 4.14, y: 3.52}
+--- !u!114 &8989277609726116503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
