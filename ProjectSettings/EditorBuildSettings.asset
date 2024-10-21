@@ -9,25 +9,25 @@ EditorBuildSettings:
     path: Assets/Scenes/Playground.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Levels/1.unity
+    path: Assets/Scenes/Levels/Level1.unity
     guid: 557ea143cb6d44727b2c25a3495ae4c7
   - enabled: 1
-    path: Assets/Scenes/Levels/2.unity
+    path: Assets/Scenes/Levels/Level2.unity
     guid: e14eb3ace1e76430ba209f07fdc3791e
   - enabled: 1
-    path: Assets/Scenes/Levels/3.unity
+    path: Assets/Scenes/Levels/Level3.unity
     guid: 1f7bffb9047884b6eb10d2374e5f4481
   - enabled: 1
-    path: Assets/Scenes/Levels/4.unity
+    path: Assets/Scenes/Levels/Level4.unity
     guid: c553a01af56bc405f8c2a7c6c4e72407
   - enabled: 1
-    path: Assets/Scenes/Levels/5.unity
+    path: Assets/Scenes/Levels/Level5.unity
     guid: e63c0c8b3209c490b9ef4fc4dbee59fa
   - enabled: 1
-    path: Assets/Scenes/Levels/6.unity
+    path: Assets/Scenes/Levels/Level6.unity
     guid: bb89952df1bc34b89b7b79f323b8ab32
   - enabled: 1
-    path: Assets/Scenes/Levels/7.unity
+    path: Assets/Scenes/Levels/Level7.unity
     guid: af041a065a59a43ed893c3a21494fb9e
   - enabled: 1
     path: Assets/Scenes/Levels/8.unity
@@ -36,6 +36,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/9.unity
     guid: e521bcc9db562d744b03dfb56b46ca5d
   - enabled: 1
-    path: Assets/Scenes/Levels/10.unity
+    path: Assets/Scenes/Levels/Level10.unity
     guid: caa43b527e02c410e9f4f6eaed8b6d9e
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

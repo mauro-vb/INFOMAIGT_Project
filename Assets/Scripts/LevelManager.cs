@@ -68,31 +68,45 @@ public class LevelManager : MonoBehaviour
         gameEnded = true;
         if (won)
         {
-            // Get the current scene name
-            string currentSceneName = SceneManager.GetActiveScene().name;
-
-            // Check if the scene name is a number
-            if (int.TryParse(currentSceneName, out int currentSceneNumber))
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            int nextSceneIndex = currentSceneIndex + 1;
+        
+            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
             {
-                // Increment the scene number by 1
-                int nextSceneNumber = currentSceneNumber + 1;
-                string nextSceneName = nextSceneNumber.ToString();
-
-                // Check if the scene with the incremented number exists
-                if (Application.CanStreamedLevelBeLoaded(nextSceneName))
-                {
-                    // Load the next scene
-                    SceneManager.LoadScene(nextSceneName);
-                }
-                else
-                {
-                    winScreen.SetActive(true); // Show win screen
-                }
+                // Load the next scene
+                SceneManager.LoadScene(nextSceneIndex);
             }
             else
             {
+                // Optionally, if you're at the last scene, you can loop back to the first
                 winScreen.SetActive(true); // Show win screen
             }
+            
+            // // Get the current scene name
+            // string currentSceneName = SceneManager.GetActiveScene().name;
+            //
+            // // Check if the scene name is a number
+            // if (int.TryParse(currentSceneName, out int currentSceneNumber))
+            // {
+            //     // Increment the scene number by 1
+            //     int nextSceneNumber = currentSceneNumber + 1;
+            //     string nextSceneName = nextSceneNumber.ToString();
+            //
+            //     // Check if the scene with the incremented number exists
+            //     if (Application.CanStreamedLevelBeLoaded(nextSceneName))
+            //     {
+            //         // Load the next scene
+            //         SceneManager.LoadScene(nextSceneName);
+            //     }
+            //     else
+            //     {
+            //         winScreen.SetActive(true); // Show win screen
+            //     }
+            // }
+            // else
+            // {
+            //     winScreen.SetActive(true); // Show win screen
+            // }
         }
         else
         {
