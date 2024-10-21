@@ -1,19 +1,11 @@
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-
 public class QCheckbox : IQuestion
 {
-    public int answer = -1;
-    public List<Checkbox> checkboxes;
+    public bool answer = false;
+    public Checkbox checkbox;
     
-    public void OnCheckboxClick(Checkbox checkbox)
+    public override void OnCheckboxClick(Checkbox checkbox)
     {
-        foreach (var cb in checkboxes)
-        {
-            cb.Reset();
-        }
-        answer = checkbox.value;
+        answer = !answer;
         checkbox.Check();
     }
 }

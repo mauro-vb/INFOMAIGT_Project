@@ -36,9 +36,9 @@ public class Questionnaire : MonoBehaviour
         {
             foreach (var question in questions)
             {
-                if (question.GetType() == typeof(QCheckbox))
+                if (question.GetType() == typeof(QCombobox))
                 {
-                    if (((QCheckbox)question).answer == -1)
+                    if (question.isRequired && ((QCombobox)question).answer == -1)
                     {
                         StartCoroutine(nameof(ShowError));
                         /* TODO: Scroll to question and some UX */
@@ -47,12 +47,21 @@ public class Questionnaire : MonoBehaviour
                 }
                 else if (question.GetType() == typeof(QOpen))
                 {
-                    if (((QOpen)question).answer == "")
+                    if (question.isRequired &&((QOpen)question).answer == "")
                     {
                         StartCoroutine(nameof(ShowError));
                         /* TODO: Scroll to question and some UX */
                         return;
                     }
+                }
+                else if (question.GetType() == typeof(QCheckbox))
+                {
+                    if (question.isRequired &&((QCheckbox)question).answer == false)
+                    {
+                        StartCoroutine(nameof(ShowError));
+                        /* TODO: Scroll to question and some UX */
+                        return;
+                    } 
                 }
             }
 
@@ -71,13 +80,17 @@ public class Questionnaire : MonoBehaviour
             for (int i = 0; i < questions.Count; i++)
             {
                 body += i + "," + questions[i].question;
-                if (questions[i].GetType() == typeof(QCheckbox))
+                if (questions[i].GetType() == typeof(QCombobox))
                 {
-                    body += "," + ((QCheckbox)questions[i]).answer;
+                    body += "," + ((QCombobox)questions[i]).answer;
                 }
                 else if (questions[i].GetType() == typeof(QOpen))
                 {
                     body += "," + ((QOpen)questions[i]).answer;
+                }
+                else if (questions[i].GetType() == typeof(QCheckbox))
+                {
+                    body += "," + ((QCheckbox)questions[i]).answer;
                 }
 
                 body += "<br/>";

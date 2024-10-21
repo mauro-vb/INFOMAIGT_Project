@@ -6,4 +6,9 @@ public class QOpen : IQuestion
     {
         answer = value;
     }
+
+    public override void OnCheckboxClick(Checkbox checkbox)
+    {
+        return;
+    }
 }

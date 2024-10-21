@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Checkbox : MonoBehaviour
 {
     public int value = 1;
-    public QCheckbox qReference;
+    public IQuestion qReference;
 
     private Button btn;
     private Image img;
