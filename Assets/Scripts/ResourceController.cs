@@ -6,16 +6,16 @@ public class ResourceController : MonoBehaviour
     public int maxResource = 100;
     public int currentResource = 100;
 
-    private TextMeshProUGUI hpDisplay; // Reference to the win screen panel
+    private TextMeshProUGUI hpDisplay; // Reference to the hp display
 
     public void Start()
     {
         if (transform.tag == "Player")
         {
-            GameObject inGameUI = GameObject.Find("InGameUI");
+            GameObject inGameUI = GameObject.Find("Canvas");
             if (inGameUI != null)
             {
-                hpDisplay = inGameUI.transform.Find("Canvas").transform.Find("Hp").transform.Find("HpDisplay").gameObject.GetComponent<TextMeshProUGUI>();
+                hpDisplay = inGameUI.transform.Find("Hp").transform.Find("HpDisplay").gameObject.GetComponent<TextMeshProUGUI>();
              }
         }
     }

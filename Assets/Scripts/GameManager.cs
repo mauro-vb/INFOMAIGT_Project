@@ -19,10 +19,10 @@ public class GameManager : MonoBehaviour
             logger = GameObject.Find("GameLogger").GetComponent<GameLogger>();
         }
 
-        GameObject inGameUI = GameObject.Find("InGameUI");
+        GameObject inGameUI = GameObject.Find("Canvas");
         if (inGameUI != null)
         {
-            timerDisplay = inGameUI.transform.Find("Canvas").transform.Find("Timer").transform.Find("TimerDisplay").gameObject.GetComponent<TextMeshProUGUI>();
+            timerDisplay = inGameUI.transform.Find("Timer").transform.Find("TimerDisplay").gameObject.GetComponent<TextMeshProUGUI>();
         }
 
         // Start timer
