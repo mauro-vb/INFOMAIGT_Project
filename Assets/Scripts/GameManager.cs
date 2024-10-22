@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
         // Start timer
         startTime = Time.time;
+
+        player = GameObject.Find("Player");
     }
 
     void Update()

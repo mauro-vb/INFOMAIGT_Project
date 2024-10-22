@@ -15,7 +15,7 @@ public class Questionnaire : MonoBehaviour
     public TextMeshProUGUI tyMessage;
 
     public string previousSceneName;
-    
+
     private MailSender mailSender;
 
     private void Start()
@@ -55,7 +55,7 @@ public class Questionnaire : MonoBehaviour
                 }
                 else if (question.GetType() == typeof(QOpen))
                 {
-                    if (question.isRequired &&((QOpen)question).answer == "")
+                    if (question.isRequired && ((QOpen)question).answer == "")
                     {
                         StartCoroutine(nameof(ShowError));
                         /* TODO: Scroll to question and some UX */
@@ -64,12 +64,12 @@ public class Questionnaire : MonoBehaviour
                 }
                 else if (question.GetType() == typeof(QCheckbox))
                 {
-                    if (question.isRequired &&((QCheckbox)question).answer == false)
+                    if (question.isRequired && ((QCheckbox)question).answer == false)
                     {
                         StartCoroutine(nameof(ShowError));
                         /* TODO: Scroll to question and some UX */
                         return;
-                    } 
+                    }
                 }
             }
 
@@ -80,6 +80,10 @@ public class Questionnaire : MonoBehaviour
     private IEnumerator SendAnswersMail()
     {
         string body = "Data for level " + previousSceneName + "<br/><br/>";
+        /* In Game Data */
+        body += QDataManager.Instance.inGameData.GetStringHTML() + "<br/>";
+
+        /* Questionnaire */
         if (questions != null)
         {
             /* HEADERS */
@@ -115,12 +119,20 @@ public class Questionnaire : MonoBehaviour
             bodyData.Messages = new List<MailSender.EmailData>();
             bodyData.Messages.Add(emailData);
             StartCoroutine(mailSender.SendEmail(bodyData, OnQuestionnaireComplete));
-            
+
             yield return new WaitForSeconds(2f);
 
             if (QDataManager.Instance != null)
             {
-                SceneManager.LoadScene(QDataManager.Instance.NextSceneName);
+                var idxNext = SceneUtility.GetBuildIndexByScenePath(QDataManager.Instance.NextSceneName);
+                if (idxNext < SceneManager.sceneCountInBuildSettings)
+                {
+                    var currentScene = QDataManager.Instance.NextSceneName;
+                    var nextScene = SceneUtility.GetScenePathByBuildIndex(idxNext + 1);
+                    QDataManager.Instance.UpdateScenes(currentScene, nextScene);
+                    QDataManager.Instance.ResetLoggerData();
+                    SceneManager.LoadScene(QDataManager.Instance.CurrentSceneName);
+                }
             }
         }
     }
@@ -166,6 +178,7 @@ public class Questionnaire : MonoBehaviour
         {
             Debug.LogError("Failed to send mail.");
         }
+
         StartCoroutine(nameof(ShowThankYou), successSendingEmail);
     }
 }

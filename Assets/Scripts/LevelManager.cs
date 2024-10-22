@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
         }
 
         gameManager = GameObject.Find("GameManager");
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame

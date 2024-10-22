@@ -61,7 +61,7 @@ public class MailSender
     public struct BodyData
     {
         public List<EmailData> Messages;
-        public bool Sandbox_Mode;
+        public bool SandboxMode;
     }
 
     // Function to send the POST request
@@ -70,7 +70,7 @@ public class MailSender
         var url = BASE_URL + "/send"; // Replace with your API URL
         UnityWebRequest request = new UnityWebRequest(url, "POST");
 
-        body.Sandbox_Mode = SANDBOX_MODE;
+        body.SandboxMode = SANDBOX_MODE;
         string bodyJson = JsonUtility.ToJson(body);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(bodyJson);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);

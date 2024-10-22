@@ -19,6 +19,21 @@ public class GameLogger : MonoBehaviour
         public float damageTaken;
 
         public float accuracy;
+
+        public string GetStringHTML()
+        {
+            return "In Game Data" + "<br/>" +
+                   "totalTimeToClearLevel = " + totalTimeToClearLevel + "<br/>" +
+                   "healthLeftAtEnd = " + healthLeftAtEnd + "<br/>" +
+                   "totalShotsFired = " + totalShotsFired + "<br/>" +
+                   "totalShotsHit = " + totalShotsHit + "<br/>" +
+                   "accuracy = " + accuracy + "<br/>" +
+                   "shotsWhileMoving = " + shotsWhileMoving + "<br/>" +
+                   "idleTimeBeforeLevel = " + idleTimeBeforeLevel + "<br/>" +
+                   "numberOfTries = " + numberOfTries + "<br/>" +
+                   "resourceCollected = " + resourceCollected + "<br/>" +
+                   "damageTaken = " + damageTaken + "<br/>";
+        }
     }
 
     public GameObject player;
@@ -45,6 +60,8 @@ public class GameLogger : MonoBehaviour
         dataManager = GameObject.Find("QDataManager");
 
         data.numberOfTries = dataManager.GetComponent<QDataManager>().inGameData.numberOfTries;
+        data.totalTimeToClearLevel = dataManager.GetComponent<QDataManager>().inGameData.totalTimeToClearLevel;
+        data.idleTimeBeforeLevel = dataManager.GetComponent<QDataManager>().inGameData.idleTimeBeforeLevel;
     }
 
     void OnEnable()
@@ -123,7 +140,7 @@ public class GameLogger : MonoBehaviour
 
     void HandleIdleTimeBeforelevel(float time)
     {
-        data.idleTimeBeforeLevel = time;
+        data.idleTimeBeforeLevel += time;
     }
 
     void HandlePlayerDamageTaken(int damage)

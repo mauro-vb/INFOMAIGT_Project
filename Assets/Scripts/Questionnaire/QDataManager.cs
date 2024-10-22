@@ -16,6 +16,7 @@ public class QDataManager : MonoBehaviour
 
     void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;
@@ -25,10 +26,22 @@ public class QDataManager : MonoBehaviour
         {
             Destroy(gameObject); // Prevent duplicates
         }
+        var a = SceneManager.GetSceneByName(QDataManager.Instance.CurrentSceneName);
     }
 
     public void SetLoggerData(GameLogger.InGameData data)
     {
         inGameData = data;
+    }
+
+    public void ResetLoggerData()
+    {
+        inGameData = new GameLogger.InGameData();
+    }
+
+    public void UpdateScenes(string currentScene, string nextScene)
+    {
+        CurrentSceneName = currentScene;
+        NextSceneName = nextScene;
     }
 }
