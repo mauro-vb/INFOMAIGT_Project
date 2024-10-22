@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialStageTransition : MonoBehaviour
 {
@@ -22,9 +23,13 @@ public class TutorialStageTransition : MonoBehaviour
             if (nextTransition)
             {
                 nextTransition.gameObject.SetActive(true);
+                Destroy(gameObject);
             }
-
-            Destroy(gameObject);
+            else
+            {
+                /* Load first Level */
+                SceneManager.LoadScene("Level1");
+            }
         }
     }
 }
