@@ -16,7 +16,7 @@ public class TutorialPlayerController : MonoBehaviour
 
     /* Tutorial variables */
     public bool canMove;
-    public bool canFire;
+    public bool canTeleport;
 
     void Start()
     {

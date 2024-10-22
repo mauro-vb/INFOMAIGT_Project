@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class TutorialManager : MonoBehaviour
     {
         public bool playerMovement;
         public bool playerFire;
+        public bool playerFireUseResource;
+        public bool playerTeleport;
+        
+        public bool projectileCanCollideWithEnemies;
+        public bool projectileCanCollideWithAbsorbing;
+        public bool projectileCanCollideWithBouncing;
+        public bool projectileCanCollideWithPlayer;
+        public bool projectileCanCollideWithProjectiles;
     }
 
     [Serializable]
@@ -24,9 +33,12 @@ public class TutorialManager : MonoBehaviour
 
     public TutorialPlayerController player;
 
-
+    private TutorialWeaponController playerWeaponController;
+    
     private void Start()
     {
+        playerWeaponController = player.gameObject.GetComponent<TutorialWeaponController>();
+
         currentStageIdx = 0;
         if (stages != null)
         {
@@ -37,6 +49,7 @@ public class TutorialManager : MonoBehaviour
             
             StartCurrentStage();
         }
+
     }
     
     private void Update()
@@ -52,7 +65,9 @@ public class TutorialManager : MonoBehaviour
             
             /* Pre-requisites */
             player.canMove = stage.parametersBefore.playerMovement;
-            player.canFire = stage.parametersBefore.playerFire;
+            player.canTeleport = stage.parametersBefore.playerTeleport;
+            playerWeaponController.canShoot = stage.parametersBefore.playerFire;
+            playerWeaponController.useResource = stage.parametersBefore.playerFireUseResource;
             stage.popUp.gameObject.SetActive(true);
             stage.popUp.canStart = true;
         } 
@@ -68,7 +83,9 @@ public class TutorialManager : MonoBehaviour
             {
                 /* After stage pop up finished */
                 player.canMove = stage.parametersAfter.playerMovement;
-                player.canFire = stage.parametersAfter.playerFire;
+                player.canTeleport = stage.parametersAfter.playerTeleport;
+                playerWeaponController.canShoot = stage.parametersAfter.playerFire;
+                playerWeaponController.useResource = stage.parametersAfter.playerFireUseResource;
                 stage.popUp.gameObject.SetActive(false);
             }
         }
@@ -77,6 +94,57 @@ public class TutorialManager : MonoBehaviour
     public void EndCurrentStage()
     {
         currentStageIdx++;
+        
+        /* Remove all projectiles */
+        /* Super inefficient but fuck it, time pressure */
+        var projectiles = GetRootObjectsInLayer((int)Layers.PROJECTILES);
+        foreach (var pr in projectiles)
+        {
+            Destroy(pr);
+        }
+        
+        /* Set player's health to default */
+        var r = player.GetComponent<TutorialResourceController>();
+        r.currentResource = r.maxResource;
+        
         StartCurrentStage();
+    }
+    
+    static List<GameObject> GetRootObjectsInLayer(int layer)
+    {
+        var ret = new List<GameObject>();
+        foreach (GameObject t in SceneManager.GetActiveScene().GetRootGameObjects())
+        {
+            if (t.layer == layer)
+            {
+                ret.Add(t.gameObject);
+            }
+        }
+        return ret;
+    }
+
+    public void SetProjectileParams(TutorialProjectileController projectile)
+    {
+        if (stages != null  && currentStageIdx < stages.Count)
+        {
+            Stage stage = stages[currentStageIdx];
+
+            if (stage.popUp.finished)
+            {
+                projectile.canCollideWithAbsorbing = stage.parametersAfter.projectileCanCollideWithAbsorbing;
+                projectile.canCollideWithBouncing = stage.parametersAfter.projectileCanCollideWithBouncing;
+                projectile.canCollideWithEnemies = stage.parametersAfter.projectileCanCollideWithEnemies;
+                projectile.canCollideWithPlayer = stage.parametersAfter.projectileCanCollideWithPlayer;
+                projectile.canCollideWithProjectiles = stage.parametersAfter.projectileCanCollideWithProjectiles;
+            }
+            else
+            {
+                projectile.canCollideWithAbsorbing = stage.parametersBefore.projectileCanCollideWithAbsorbing;
+                projectile.canCollideWithBouncing = stage.parametersBefore.projectileCanCollideWithBouncing;
+                projectile.canCollideWithEnemies = stage.parametersBefore.projectileCanCollideWithEnemies;
+                projectile.canCollideWithPlayer = stage.parametersBefore.projectileCanCollideWithPlayer;
+                projectile.canCollideWithProjectiles = stage.parametersBefore.projectileCanCollideWithProjectiles;
+            }
+        }
     }
 }
