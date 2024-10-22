@@ -1,22 +1,19 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class TutorialStageTransition : MonoBehaviour
 {
     public TutorialManager managerRef;
-    private BoxCollider2D bc;
-
-    private void Start()
-    {
-        bc = GetComponent<BoxCollider2D>();
-    }
+    public GameObject wallAppear;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.layer == Layers.PLAYER)
         {
             managerRef.EndCurrentStage();
-            Destroy(bc);
+            wallAppear.gameObject.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }
