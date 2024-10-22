@@ -64,7 +64,7 @@ public class TutorialManager : MonoBehaviour
         {
             Stage stage = stages[currentStageIdx];
 
-            if (stage.popUp.finished && Input.GetMouseButtonDown(0))
+            if (stage.popUp.finished)
             {
                 /* After stage pop up finished */
                 player.canMove = stage.parametersAfter.playerMovement;
