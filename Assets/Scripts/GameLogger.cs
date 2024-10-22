@@ -1,28 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameLogger : MonoBehaviour
 {
-    
+    [Serializable]
+    public struct InGameData
+    {
+        public float totalTimeToClearLevel;
+        public float healthLeftAtEnd;
+        public int totalShotsFired;
+        public int totalShotsHit;
+        public float shotsWhileMoving;
+        public float idleTimeBeforeLevel;
+        public int numberOfTries;
+        public int resourceCollected; /* Missed shots that were recollected by the player */
+        public float damageTaken;
+
+        public float accuracy;
+    }
+
     public GameObject player;
-    
-    public float totalTimeToClearLevel;
-    public int totalShotsFired;
-    public int totalShotsHit;
-    // public float accuracy;
-    public float healthLeftAtEnd;
-    public int healthPacksPickedUp;
-    public float shotsWhileMoving;
+    public GameObject dataManager;
+
+    public InGameData data;
+
+
+    // public float averageDistanceFromTarget; // cumulative, you need to divide this by totalShotsHit to get the average
+    // public int healthPacksPickedUp;
     // public Vector2 movementTicks;  // Vector2 to store movement ticks (x: left/right, y: up/down)
-    public float idleTimeBeforeLevel;
     // public float timeSpentBehindWalls;
     // public float timeSpentInCorners;
     // public float timeSpentFighting;
-    public float averageDistanceFromTarget; // cumulative, you need to divide this by totalShotsHit to get the average
     // public int powerUpsPickedUp;
-    public float damageTaken;
-    // public int numberOfTries;
 
     void Start()
     {
@@ -30,45 +41,93 @@ public class GameLogger : MonoBehaviour
         {
             player = GameObject.Find("Player");
         }
+
+        dataManager = GameObject.Find("QDataManager");
+
+        data.numberOfTries = dataManager.GetComponent<QDataManager>().inGameData.numberOfTries;
     }
 
     void OnEnable()
     {
         // Subscribe to the shooting event
         WeaponController.OnPlayerShoot += HandlePlayerShoot;
-        EnemyController.OnEnemyHit += HandleEnemyHit;
+        ProjectileController.OnEnemyHit += HandleEnemyHit;
         ProjectileController.OnProjectileCollected += HandleProjectileCollection;
+        GameManager.OnLevelEndTimer += HandleTimeToCompleteLevel;
+        GameManager.OnLevelEndPlayerResource += HandlePlayerHealth;
+        GameManager.OnIdleStop += HandleIdleTimeBeforelevel;
+        LevelManager.OnRestartLevel += HandleNumberOfRetries;
+        UICommands.OnRestartLevel += HandleNumberOfRetries;
+        PlayerController.OnDamageTaken += HandlePlayerDamageTaken;
     }
 
     void OnDisable()
     {
         // Unsubscribe from the event to avoid memory leaks
         WeaponController.OnPlayerShoot -= HandlePlayerShoot;
-        EnemyController.OnEnemyHit -= HandleEnemyHit;
+        ProjectileController.OnEnemyHit -= HandleEnemyHit;
         ProjectileController.OnProjectileCollected -= HandleProjectileCollection;
+        GameManager.OnLevelEndTimer -= HandleTimeToCompleteLevel;
+        GameManager.OnLevelEndPlayerResource -= HandlePlayerHealth;
+        GameManager.OnIdleStop -= HandleIdleTimeBeforelevel;
+        LevelManager.OnRestartLevel -= HandleNumberOfRetries;
+        UICommands.OnRestartLevel -= HandleNumberOfRetries;
+        PlayerController.OnDamageTaken -= HandlePlayerDamageTaken;
+
+        // Transfer collected data from the level to the QDataManager
+        if (dataManager != null)
+        {
+            data.accuracy = data.totalShotsFired != 0 ? (float)data.totalShotsHit / data.totalShotsFired : 0;
+            dataManager.GetComponent<QDataManager>().SetLoggerData(data);
+        }
     }
 
     // This method is called whenever the player shoots
     void HandlePlayerShoot()
     {
-        totalShotsFired++;
+        data.totalShotsFired++;
 
         // check if the player is moving
         if (player.GetComponent<Rigidbody2D>().velocity != Vector2.zero)
         {
-            shotsWhileMoving++;
+            data.shotsWhileMoving++;
         }
     }
 
     // This method is called whenever the enemy hits the player
     void HandleEnemyHit()
     {
-        totalShotsHit++;
+        data.totalShotsHit++;
     }
 
     // This method is called whenever the player collects a health pack
     void HandleProjectileCollection()
     {
-        healthPacksPickedUp++;
+        data.resourceCollected++;
+    }
+
+    void HandleTimeToCompleteLevel(float time)
+    {
+        data.totalTimeToClearLevel += time;
+    }
+
+    void HandleNumberOfRetries()
+    {
+        data.numberOfTries++;
+    }
+
+    void HandlePlayerHealth(int health)
+    {
+        data.healthLeftAtEnd = health;
+    }
+
+    void HandleIdleTimeBeforelevel(float time)
+    {
+        data.idleTimeBeforeLevel = time;
+    }
+
+    void HandlePlayerDamageTaken(int damage)
+    {
+        data.damageTaken += damage;
     }
 }

@@ -9,29 +9,29 @@ public class InGameUIController : MonoBehaviour
 {
     public Camera playerCamera;
     public GameObject projectileWidgetPrefab;
-    public GameObject enemyWidgetPrefab;  // New: Widget prefab for enemies
+    public GameObject enemyWidgetPrefab; // New: Widget prefab for enemies
 
     private Dictionary<GameObject, GameObject> projectilesWidgets;
-    private Dictionary<GameObject, GameObject> enemiesWidgets;  // New: Dictionary for enemy widgets
+    private Dictionary<GameObject, GameObject> enemiesWidgets; // New: Dictionary for enemy widgets
 
     private Scene scene;
 
     private readonly float PROJECTILE_MAX_DISTANCE = 20.0f;
-    private readonly float ENEMY_MAX_DISTANCE = 30.0f;  // New: Max distance for enemy widget scaling
+    private readonly float ENEMY_MAX_DISTANCE = 30.0f; // New: Max distance for enemy widget scaling
 
     private void Start()
     {
         scene = SceneManager.GetActiveScene();
         projectilesWidgets = new Dictionary<GameObject, GameObject>();
-        enemiesWidgets = new Dictionary<GameObject, GameObject>();  // New: Initialize dictionary for enemy widgets
+        enemiesWidgets = new Dictionary<GameObject, GameObject>(); // New: Initialize dictionary for enemy widgets
     }
 
     private void Update()
     {
         CheckForProjectileWidgets();
-        CheckForEnemyWidgets();  // New: Check for enemy widgets
+        CheckForEnemyWidgets(); // New: Check for enemy widgets
         UpdateProjectileWidgets();
-        UpdateEnemyWidgets();  // New: Update enemy widgets
+        UpdateEnemyWidgets(); // New: Update enemy widgets
     }
 
     private void UpdateProjectileWidgets()
@@ -48,7 +48,7 @@ public class InGameUIController : MonoBehaviour
             }
             else
             {
-              RestartAllWidgets();
+                RestartAllWidgets();
             }
         }
     }
@@ -68,9 +68,8 @@ public class InGameUIController : MonoBehaviour
             }
             else
             {
-              RestartAllWidgets();
+                RestartAllWidgets();
             }
-
         }
     }
 
@@ -228,7 +227,8 @@ public class InGameUIController : MonoBehaviour
                 Destroy(widget);
             }
         }
-        projectilesWidgets.Clear();  // Clear the dictionary
+
+        projectilesWidgets.Clear(); // Clear the dictionary
 
         // Remove all enemy widgets
         foreach (var widget in enemiesWidgets.Values)
@@ -238,11 +238,11 @@ public class InGameUIController : MonoBehaviour
                 Destroy(widget);
             }
         }
-        enemiesWidgets.Clear();  // Clear the dictionary
+
+        enemiesWidgets.Clear(); // Clear the dictionary
 
         // Recreate widgets for all projectiles and enemies
         CheckForProjectileWidgets();
         CheckForEnemyWidgets();
     }
-
 }

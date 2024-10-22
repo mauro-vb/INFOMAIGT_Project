@@ -4,6 +4,8 @@ using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action<int> OnDamageTaken;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 	private ResourceController rc;
@@ -92,6 +94,7 @@ public class PlayerController : MonoBehaviour
         if ((other.gameObject.layer == Layers.ENVIRONMENT_ABSORBING || other.gameObject.layer == Layers.ENEMIES) && rc.currentResource > 10)
         {
             rc.currentResource -= 10;
+            OnDamageTaken?.Invoke(10);
         }
     }
 }

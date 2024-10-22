@@ -1,11 +1,15 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public static event Action OnRestartLevel;
+    
     public List<GameObject> objectsToRemove; // List of enemies that need to be removed to win
     public GameObject player;                // Reference to the player object
+    public GameObject gameManager;
 
     public bool loadQuestionnaireAfterScene = true;
 
@@ -25,6 +29,8 @@ public class LevelManager : MonoBehaviour
             loseScreen = canvas.transform.Find("LoseScreen").gameObject;
             loseScreen.SetActive(false); // Ensure the lose screen is hidden at the start
         }
+
+        gameManager = GameObject.Find("GameManager");
     }
 
     // Update is called once per frame
@@ -62,6 +68,7 @@ public class LevelManager : MonoBehaviour
     // Function to restart the current scene
     public void RestartLevel()
     {
+        OnRestartLevel?.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -77,6 +84,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (loadQuestionnaireAfterScene)
                 {
+                    gameManager.GetComponent<GameManager>().EndLevel();
                     SceneManager.LoadScene("Scenes/Questionnaire", LoadSceneMode.Single);
                 }
                 else

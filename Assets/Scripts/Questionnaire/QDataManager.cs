@@ -10,6 +10,9 @@ public class QDataManager : MonoBehaviour
 
     public string CurrentSceneName;
     public string NextSceneName;
+    
+    
+    public GameLogger.InGameData inGameData;
 
     void Awake()
     {
@@ -22,5 +25,10 @@ public class QDataManager : MonoBehaviour
         {
             Destroy(gameObject); // Prevent duplicates
         }
+    }
+
+    public void SetLoggerData(GameLogger.InGameData data)
+    {
+        inGameData = data;
     }
 }

@@ -1,24 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private GameLogger logger;
+    public static event Action<float> OnIdleStop;
+    public static event Action<float> OnLevelEndTimer;
+    public static event Action<int> OnLevelEndPlayerResource;
+    
+    private bool idle = true;
+
     public GameObject player;
-    private string logFilePath = "log.json";
     public float startTime;
 
     private TextMeshProUGUI timerDisplay; // Reference to the timer display
 
     void Start()
     {
-        if (logger == null)
-        {
-            logger = GameObject.Find("GameLogger").GetComponent<GameLogger>();
-        }
-
         GameObject inGameUI = GameObject.Find("Canvas");
         if (inGameUI != null)
         {
@@ -27,9 +25,6 @@ public class GameManager : MonoBehaviour
 
         // Start timer
         startTime = Time.time;
-
-        // start coroutine for saving stats every x second
-        StartCoroutine(SaveStatsCoroutine());
     }
 
     void Update()
@@ -37,41 +32,21 @@ public class GameManager : MonoBehaviour
         float timeElapsed = Time.time - startTime;
 
         timerDisplay.text = "TIMER: " + Mathf.Floor(timeElapsed);
-        Debug.Log(timerDisplay.text);
-    }
-    void OnEnable()
-    {
-        Application.quitting += EndLevel;
-    }
-
-    IEnumerator SaveStatsCoroutine()
-    {
-        while (true)
+        
+        if (idle && Input.anyKey)
         {
-            SaveStatsToJSON(logFilePath);
-            yield return new WaitForSeconds(1.5f);
+            idle = false;
+            OnIdleStop?.Invoke(Time.time - startTime);
         }
     }
 
     public void EndLevel()
     {
         float timeElapsed = Time.time - startTime;
-        logger.totalTimeToClearLevel = timeElapsed;
-        if (player != null)
-        {
-            logger.healthLeftAtEnd = player.GetComponent<ResourceController>().currentResource;
-        }
-        else
-        {
-            logger.healthLeftAtEnd = 0;
-        }
-        SaveStatsToJSON(logFilePath);
-    }
+        OnLevelEndTimer?.Invoke(timeElapsed);
 
-    void SaveStatsToJSON(string filePath)
-    {
-        string jsonData = JsonUtility.ToJson(logger, true);  // 'true' for pretty-printing
-        System.IO.File.WriteAllText(filePath, jsonData);
-        Debug.Log("Player stats saved to " + filePath);
+        var r = player.GetComponent<ResourceController>();
+        int health = r ? r.currentResource : 0;
+        OnLevelEndPlayerResource?.Invoke(health);
     }
 }

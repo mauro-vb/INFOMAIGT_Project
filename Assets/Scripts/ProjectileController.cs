@@ -5,6 +5,8 @@ public class ProjectileController : MonoBehaviour
 {
     // defining the event for when a projectile (health) is collected by player
     public static event Action OnProjectileCollected;
+    public static event Action OnEnemyHit;
+
 
     public int resourceCost = 10;
     public float speed = 0;
@@ -24,7 +26,6 @@ public class ProjectileController : MonoBehaviour
 
     void Start()
     {
-
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -51,7 +52,15 @@ public class ProjectileController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == Layers.ENVIRONMENT_ABSORBING || other.gameObject.layer == Layers.ENEMIES)
+        if (other.gameObject.layer == Layers.ENEMIES)
+        {
+            OnEnemyHit?.Invoke();
+            
+            playerControlsManager.UnregisterResourceController(GetComponent<ResourceController>());
+            Destroy(gameObject);
+        }
+        
+        if (other.gameObject.layer == Layers.ENVIRONMENT_ABSORBING)
         {
             playerControlsManager.UnregisterResourceController(GetComponent<ResourceController>());
             Destroy(gameObject);

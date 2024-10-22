@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class UICommands : MonoBehaviour
 {
+    public static event Action OnRestartLevel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +15,7 @@ public class UICommands : MonoBehaviour
     }
     public void RestartLevel()
     {
+        OnRestartLevel?.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

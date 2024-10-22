@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // defining the event for when an enemy is hit
-    public static event Action OnEnemyHit;
     public GameLogger logger;
     
     public EnemyData enemyData;
