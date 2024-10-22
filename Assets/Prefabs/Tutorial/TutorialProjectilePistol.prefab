@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 23842737f2b50ea4680f0de20437fddb, type: 2}
+  - {fileID: 2100000, guid: f15c16e64a33e4069831c9d5fe006ab8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -190,8 +190,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7499a9eeae42c79129a62906f60a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  managerRef: {fileID: 0}
   speed: 0
   dir: {x: 0, y: 1}
+  playerControlsManager: {fileID: 0}
+  canCollideWithEnemies: 0
+  canCollideWithAbsorbing: 0
+  canCollideWithBouncing: 0
+  canCollideWithPlayer: 0
+  canCollideWithProjectiles: 0
 --- !u!1 &8127006050057820356
 GameObject:
   m_ObjectHideFlags: 0

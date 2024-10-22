@@ -95,6 +95,9 @@ public class TutorialManager : MonoBehaviour
     {
         currentStageIdx++;
         
+        /* Stop player from gliding */
+        player.rb.velocity = Vector2.zero;
+        
         /* Remove all projectiles */
         /* Super inefficient but fuck it, time pressure */
         var projectiles = GetRootObjectsInLayer((int)Layers.PROJECTILES);

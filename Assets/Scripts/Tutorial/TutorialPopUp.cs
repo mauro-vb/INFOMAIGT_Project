@@ -1,27 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 
 public class TutorialPopUp : MonoBehaviour
 {
+    [Serializable]
+    public struct ObjectAppear
+    {
+        public GameObject objToAppear;
+        public int afterDialog;
+    }
+    
     public float delayBetweenLetters = 0.2f; /* Seconds */
 
     public List<TextMeshProUGUI> tmpDialogs;
     private float timeElapsed;
     private List<string> dialogs;
 
+    public List<ObjectAppear> objectsToAppear;
+    
     private int currentDialogIdx;
     private int currentLetterIdx;
 
     public bool finishedCurrentDialog;
     public bool finished;
     public bool canStart;
-
+    
     // Start is called before the first frame update
     void Start()
     {
+        if (objectsToAppear != null)
+        {
+            foreach (var obj in objectsToAppear)
+            {
+                obj.objToAppear.gameObject.SetActive(false);
+            }
+        }
+        
         if (tmpDialogs != null)
         {
             dialogs = new List<string>();
@@ -49,10 +68,28 @@ public class TutorialPopUp : MonoBehaviour
 
             UpdateDialogs();
             UpdateTextForCurrentDialog();
+            UpdateObjectsToAppear();
             CheckForInput();
         }
     }
 
+    private void UpdateObjectsToAppear()
+    {
+        if (!finishedCurrentDialog && objectsToAppear != null)
+        {
+            if (currentDialogIdx < dialogs.Count)
+            {
+                foreach (var obj in objectsToAppear)
+                {
+                    if (obj.afterDialog < currentDialogIdx)
+                    {
+                        obj.objToAppear.gameObject.SetActive(true);
+                    }
+                }
+            }
+        }
+    }
+    
     private void UpdateTextForCurrentDialog()
     {
         if (!finishedCurrentDialog)

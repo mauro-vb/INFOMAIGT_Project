@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class TutorialPlayerController : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private SpriteRenderer sr;
-    private ResourceController rc;
+    private TutorialResourceController rc;
 
     public Sprite[] forwardSprites;
     public Sprite[] sidewaysSprites;
@@ -20,7 +20,7 @@ public class TutorialPlayerController : MonoBehaviour
 
     void Start()
     {
-        rc = GetComponent<ResourceController>();
+        rc = GetComponent<TutorialResourceController>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         currentFrame = 0;
