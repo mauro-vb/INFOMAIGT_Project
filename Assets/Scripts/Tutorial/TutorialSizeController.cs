@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class TutorialSizeController : MonoBehaviour
 {
-    private ResourceController resource; /* To be added from the editor */
+    private TutorialResourceController resource; /* To be added from the editor */
 
     private void Start()
     {
-        resource = GetComponent<ResourceController>();
+        resource = GetComponent<TutorialResourceController>();
     }
 
     public void Update()
