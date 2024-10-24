@@ -10,7 +10,7 @@ public class PlayerControlsManager : MonoBehaviour
 
     void Start()
     {
-        FindLargestResourceController();
+        //FindLargestResourceController();
     }
 
     public void RegisterResourceController(ResourceController resourceController)

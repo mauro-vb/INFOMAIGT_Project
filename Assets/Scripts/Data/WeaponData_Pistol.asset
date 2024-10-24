@@ -15,5 +15,5 @@ MonoBehaviour:
   resourceCost: 10
   projectilesPerShot: 1
   spreadAngle: 0
-  projectileSpeed: 5
+  projectileSpeed: 7
   shootCooldown: 0.5
