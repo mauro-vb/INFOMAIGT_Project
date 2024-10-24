@@ -26,7 +26,7 @@ public class ResourceController : MonoBehaviour
         {
             if (hpDisplay != null)
             {
-                hpDisplay.text = "HP: " + currentResource + "/" + maxResource;
+                hpDisplay.text = "Shots Left: " + (currentResource / 10 - 1);
             }
 
             if (currentResource <= 0)
