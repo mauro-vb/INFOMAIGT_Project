@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static event Action OnRestartLevel;
-    
     public List<GameObject> objectsToRemove; // List of enemies that need to be removed to win
     public GameObject player;                // Reference to the player object
     public GameObject gameManager;
@@ -80,7 +79,7 @@ public class LevelManager : MonoBehaviour
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             int nextSceneIndex = currentSceneIndex + 1;
-        
+
             if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
             {
                 if (loadQuestionnaireAfterScene)
