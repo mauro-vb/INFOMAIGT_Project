@@ -6,6 +6,7 @@ public class SizeController : MonoBehaviour
 {
     public ResourceController resource; /* To be added from the editor */
     public float lightMult = 1.0f;
+    public float baseScale =  1.0f;
 
     private Light2D lightComponent;
     private float lightVal;
@@ -31,6 +32,6 @@ public class SizeController : MonoBehaviour
             lightComponent.intensity = lightVal - (lightVal * lightMult * (1 - ratio));
             lightComponent.pointLightOuterRadius = radiusVal - (radiusVal * lightMult * (-0.5f + 0.5f * (1 - ratio)));
         }
-        transform.localScale = new Vector3(ratio, ratio, ratio);
+        transform.localScale = new Vector3(baseScale * ratio, baseScale * ratio, baseScale * ratio);
     }
 }
