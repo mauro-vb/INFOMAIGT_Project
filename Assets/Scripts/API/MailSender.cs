@@ -11,7 +11,7 @@ public class MailSender
     private static readonly string API_KEY = "9c085655c76f76a4cca85e565d4023a6"; /* really secure haha */
     private static readonly string SECRET_KEY = "041e0fee9a00dec54e54e9c3fd539d8d"; /* really secure haha */
 
-    private static readonly bool SANDBOX_MODE = true;
+    private static readonly bool SANDBOX_MODE = false;
 
     // https://dev.mailjet.com/email/guides/send-api-v31/#sandbox-mode
     // {

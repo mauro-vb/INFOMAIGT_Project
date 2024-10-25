@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Playground.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Tutorial.unity
+    guid: ba5f1ca15cd394af6b3e75f1031db839
   - enabled: 1
     path: Assets/Scenes/Levels/Level1.unity
     guid: 557ea143cb6d44727b2c25a3495ae4c7
@@ -42,4 +42,3 @@ EditorBuildSettings:
     path: Assets/Scenes/Questionnaire.unity
     guid: d1f007d2d59cc447f8e91d85d6ff263b
   m_configObjects: {}
-  m_UseUCBPForAssetBundles: 0

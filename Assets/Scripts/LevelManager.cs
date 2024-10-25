@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -16,6 +18,9 @@ public class LevelManager : MonoBehaviour
     private GameObject loseScreen; // Reference to the lose screen panel
 
     private bool gameEnded = false;
+
+    public Image fadeImg;
+    public Animator fadeAnim;
 
     private void Start()
     {
@@ -84,11 +89,13 @@ public class LevelManager : MonoBehaviour
             {
                 if (loadQuestionnaireAfterScene)
                 {
+                    StartCoroutine(Fade());
                     gameManager.GetComponent<GameManager>().EndLevel();
                     SceneManager.LoadScene("Scenes/Questionnaire", LoadSceneMode.Single);
                 }
                 else
                 {
+                    StartCoroutine(Fade());
                     // Load the next scene
                     SceneManager.LoadScene(nextSceneIndex);
                 }
@@ -103,6 +110,12 @@ public class LevelManager : MonoBehaviour
         {
             loseScreen.SetActive(true); // Show lose screen
         }
+    }
+
+    IEnumerator Fade()
+    {
+        fadeAnim.SetBool("Fade", true);
+        yield return new WaitUntil(() => fadeImg.color.a == 1f);
     }
 
     // Function called when the level is completed (all objects removed)
