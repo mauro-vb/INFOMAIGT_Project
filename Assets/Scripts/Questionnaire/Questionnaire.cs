@@ -18,8 +18,12 @@ public class Questionnaire : MonoBehaviour
 
     private MailSender mailSender;
 
+    private SceneFadeManager sceneFadeManager;
+
     private void Start()
     {
+        sceneFadeManager = GameObject.Find("SceneFadeManager")?.GetComponent<SceneFadeManager>();
+        
         /* Get data from previous scene */
         if (QDataManager.Instance != null)
         {
@@ -79,6 +83,8 @@ public class Questionnaire : MonoBehaviour
 
     private IEnumerator SendAnswersMail()
     {
+        StartCoroutine(sceneFadeManager.FadeOut());
+
         string body = "Data for level " + previousSceneName + "<br/><br/>";
         /* In Game Data */
         body += QDataManager.Instance.inGameData.GetStringHTML() + "<br/>";
@@ -131,6 +137,11 @@ public class Questionnaire : MonoBehaviour
                     var nextScene = SceneUtility.GetScenePathByBuildIndex(idxNext + 1);
                     QDataManager.Instance.UpdateScenes(currentScene, nextScene);
                     QDataManager.Instance.ResetLoggerData();
+
+                    if (sceneFadeManager)
+                    {
+                        StartCoroutine(sceneFadeManager.FadeOut());
+                    }
                     SceneManager.LoadScene(QDataManager.Instance.CurrentSceneName);
                 }
             }

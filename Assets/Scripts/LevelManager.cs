@@ -19,11 +19,12 @@ public class LevelManager : MonoBehaviour
 
     private bool gameEnded = false;
 
-    public Image fadeImg;
-    public Animator fadeAnim;
+    public SceneFadeManager sceneFadeManager;
 
     private void Start()
     {
+        sceneFadeManager = GameObject.Find("SceneFadeManager")?.GetComponent<SceneFadeManager>();
+        
         gameEnded = false;
         GameObject canvas = GameObject.Find("Canvas");
         if (canvas != null)
@@ -87,16 +88,18 @@ public class LevelManager : MonoBehaviour
 
             if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
             {
+                if (sceneFadeManager)
+                {
+                    StartCoroutine(sceneFadeManager.FadeOut());
+                }
+                
                 if (loadQuestionnaireAfterScene)
                 {
-                    StartCoroutine(Fade());
                     gameManager.GetComponent<GameManager>().EndLevel();
                     SceneManager.LoadScene("Scenes/Questionnaire", LoadSceneMode.Single);
                 }
                 else
                 {
-                    StartCoroutine(Fade());
-                    // Load the next scene
                     SceneManager.LoadScene(nextSceneIndex);
                 }
             }
@@ -111,13 +114,7 @@ public class LevelManager : MonoBehaviour
             loseScreen.SetActive(true); // Show lose screen
         }
     }
-
-    IEnumerator Fade()
-    {
-        fadeAnim.SetBool("Fade", true);
-        yield return new WaitUntil(() => fadeImg.color.a == 1f);
-    }
-
+    
     // Function called when the level is completed (all objects removed)
     void LevelComplete()
     {
