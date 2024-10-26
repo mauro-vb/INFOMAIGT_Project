@@ -14,9 +14,10 @@ public class QDataManager : MonoBehaviour
     
     public GameLogger.InGameData inGameData;
 
+    public string PlayerName = "NOT-FILLED";
+
     void Awake()
     {
-
         if (Instance == null)
         {
             Instance = this;
@@ -26,7 +27,6 @@ public class QDataManager : MonoBehaviour
         {
             Destroy(gameObject); // Prevent duplicates
         }
-        var a = SceneManager.GetSceneByName(QDataManager.Instance.CurrentSceneName);
     }
 
     public void SetLoggerData(GameLogger.InGameData data)
@@ -43,5 +43,10 @@ public class QDataManager : MonoBehaviour
     {
         CurrentSceneName = currentScene;
         NextSceneName = nextScene;
+    }
+
+    public void SetPlayerName(string name)
+    {
+        PlayerName = name;
     }
 }

@@ -27,6 +27,7 @@ public class TutorialStageTransition : MonoBehaviour
             }
             else
             {
+                QDataManager.Instance.UpdateScenes("Level1", "Level2");
                 /* Load first Level */
                 SceneManager.LoadScene("Level1");
             }

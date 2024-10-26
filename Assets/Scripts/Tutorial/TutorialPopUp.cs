@@ -29,6 +29,8 @@ public class TutorialPopUp : MonoBehaviour
     public bool finishedCurrentDialog;
     public bool finished;
     public bool canStart;
+
+    private bool is_inputing;
     
     // Start is called before the first frame update
     void Start()
@@ -70,6 +72,11 @@ public class TutorialPopUp : MonoBehaviour
             UpdateTextForCurrentDialog();
             UpdateObjectsToAppear();
             CheckForInput();
+        }
+
+        if (currentDialogIdx < tmpDialogs.Count && tmpDialogs[currentDialogIdx].gameObject.name == "INPUT")
+        {
+            is_inputing = true;
         }
     }
 
@@ -130,7 +137,7 @@ public class TutorialPopUp : MonoBehaviour
     private void CheckForInput()
     {
         /* Advance to next dialog */
-        if (!finished && Input.GetMouseButtonDown(0))
+        if (!finished && Input.GetMouseButtonDown(0) && !is_inputing)
         {
             var currentDialog = dialogs[currentDialogIdx];
             var currentTmpDialog = tmpDialogs[currentDialogIdx];
@@ -163,5 +170,15 @@ public class TutorialPopUp : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Set_Is_Inputing(bool value)
+    {
+        is_inputing = value;
+    }
+
+    public void Finish()
+    {
+        finished = true;
     }
 }

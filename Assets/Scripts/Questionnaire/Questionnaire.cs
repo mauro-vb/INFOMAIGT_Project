@@ -23,7 +23,7 @@ public class Questionnaire : MonoBehaviour
     private void Start()
     {
         sceneFadeManager = GameObject.Find("SceneFadeManager")?.GetComponent<SceneFadeManager>();
-        
+
         /* Get data from previous scene */
         if (QDataManager.Instance != null)
         {
@@ -85,7 +85,9 @@ public class Questionnaire : MonoBehaviour
     {
         StartCoroutine(sceneFadeManager.FadeOut());
 
-        string body = "Data for level " + previousSceneName + "<br/><br/>";
+        string body = "Data from player " + QDataManager.Instance.PlayerName + "<br/><br/>";
+
+        body += "Data for level " + previousSceneName + "<br/><br/>";
         /* In Game Data */
         body += QDataManager.Instance.inGameData.GetStringHTML() + "<br/>";
 
@@ -142,6 +144,7 @@ public class Questionnaire : MonoBehaviour
                     {
                         StartCoroutine(sceneFadeManager.FadeOut());
                     }
+
                     SceneManager.LoadScene(QDataManager.Instance.CurrentSceneName);
                 }
             }
