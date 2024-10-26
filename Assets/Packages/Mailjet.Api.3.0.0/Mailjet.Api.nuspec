@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Mailjet.Api</id>
+    <version>3.0.0</version>
+    <authors>Mailjet, Dimitar Kostov</authors>
+    <licenseUrl>https://github.com/mailjet/mailjet-apiv3-dotnet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/mailjet/mailjet-apiv3-dotnet</projectUrl>
+    <iconUrl>https://www.mailjet.com/wp-content/uploads/2017/04/Mailjet.png</iconUrl>
+    <description>Official C# client library For Mailjet API version 3.
+
+			Documentation: https://dev.mailjet.com/guides/</description>
+    <tags>Mailjet API Email Mail Microsoft Azure Transactional Marketing .NET Core</tags>
+    <repository url="https://github.com/mailjet/mailjet-apiv3-dotnet" />
+    <dependencies>
+      <group targetFramework=".NETStandard1.1">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
