@@ -12,7 +12,7 @@ public class TutorialManager : MonoBehaviour
         public bool playerFire;
         public bool playerFireUseResource;
         public bool playerTeleport;
-        
+
         public bool projectileCanCollideWithEnemies;
         public bool projectileCanCollideWithAbsorbing;
         public bool projectileCanCollideWithBouncing;
@@ -34,7 +34,7 @@ public class TutorialManager : MonoBehaviour
     public TutorialPlayerController player;
 
     private TutorialWeaponController playerWeaponController;
-    
+
     private void Start()
     {
         playerWeaponController = player.gameObject.GetComponent<TutorialWeaponController>();
@@ -46,12 +46,11 @@ public class TutorialManager : MonoBehaviour
             {
                 stage.popUp.gameObject.SetActive(false);
             }
-            
+
             StartCurrentStage();
         }
-
     }
-    
+
     private void Update()
     {
         AdvanceCurrentStage();
@@ -62,7 +61,7 @@ public class TutorialManager : MonoBehaviour
         if (stages != null && currentStageIdx < stages.Count)
         {
             Stage stage = stages[currentStageIdx];
-            
+
             /* Pre-requisites */
             player.canMove = stage.parametersBefore.playerMovement;
             player.canTeleport = stage.parametersBefore.playerTeleport;
@@ -70,7 +69,7 @@ public class TutorialManager : MonoBehaviour
             playerWeaponController.useResource = stage.parametersBefore.playerFireUseResource;
             stage.popUp.gameObject.SetActive(true);
             stage.popUp.canStart = true;
-        } 
+        }
     }
 
     public void AdvanceCurrentStage()
@@ -94,10 +93,10 @@ public class TutorialManager : MonoBehaviour
     public void EndCurrentStage()
     {
         currentStageIdx++;
-        
+
         /* Stop player from gliding */
         player.rb.velocity = Vector2.zero;
-        
+
         /* Remove all projectiles */
         /* Super inefficient but fuck it, time pressure */
         var projectiles = GetRootObjectsInLayer((int)Layers.PROJECTILES);
@@ -105,14 +104,14 @@ public class TutorialManager : MonoBehaviour
         {
             Destroy(pr);
         }
-        
+
         /* Set player's health to default */
         var r = player.GetComponent<TutorialResourceController>();
         r.currentResource = r.maxResource;
-        
+
         StartCurrentStage();
     }
-    
+
     static List<GameObject> GetRootObjectsInLayer(int layer)
     {
         var ret = new List<GameObject>();
@@ -123,12 +122,13 @@ public class TutorialManager : MonoBehaviour
                 ret.Add(t.gameObject);
             }
         }
+
         return ret;
     }
 
     public void SetProjectileParams(TutorialProjectileController projectile)
     {
-        if (stages != null  && currentStageIdx < stages.Count)
+        if (stages != null && currentStageIdx < stages.Count)
         {
             Stage stage = stages[currentStageIdx];
 

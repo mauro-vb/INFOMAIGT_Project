@@ -18,6 +18,7 @@ public class DataSender
     public struct DataStructure
     {
         public string name;
+        public string level;
         public GameLogger.InGameData inGameData;
         public Dictionary<string, int> questionAnswers;
     }

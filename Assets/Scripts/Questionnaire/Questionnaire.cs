@@ -88,7 +88,7 @@ public class Questionnaire : MonoBehaviour
         DataSender.DataStructure data = new DataSender.DataStructure();
         data.name = QDataManager.Instance.PlayerName.Length > 0 ? QDataManager.Instance.PlayerName : "NOT-FILLED";
         data.inGameData = QDataManager.Instance.inGameData;
-
+        data.level = QDataManager.Instance.CurrentSceneName;
         data.questionAnswers = new Dictionary<string, int>();
 
         // string body = "Data from player " + QDataManager.Instance.PlayerName + "<br/><br/>";
