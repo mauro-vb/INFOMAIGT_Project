@@ -37,6 +37,12 @@ public class TutorialManager : MonoBehaviour
     
     private void Start()
     {
+        DataSender ds = new DataSender();
+        DataSender.DataStructure x = new DataSender.DataStructure();
+        x.questionAnswers = new Dictionary<string, int>();
+        x.questionAnswers.Add("a", 2);
+        StartCoroutine(ds.SendData(x, (bool x) => { }));
+        
         playerWeaponController = player.gameObject.GetComponent<TutorialWeaponController>();
 
         currentStageIdx = 0;

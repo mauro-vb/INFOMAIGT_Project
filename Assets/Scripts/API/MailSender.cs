@@ -78,7 +78,10 @@ public class MailSender
 
     public async Task<bool> SendRequest()
     {
+        Debug.Log("WTF");
         var response = await client.SendTransactionalEmailAsync(email);
+        Debug.Log("WTF AFTER");
+        Debug.Log(response);
         return response.Messages.Length == 1;
     }
 
@@ -88,6 +91,8 @@ public class MailSender
         UnityWebRequest request = new UnityWebRequest(url, "POST");
 
         body.SandboxMode = SANDBOX_MODE;
+        
+        Debug.Log("TEEEEST");
 
         // construct your email with builder
         email = new TransactionalEmailBuilder()
@@ -98,9 +103,10 @@ public class MailSender
             .Build();
 
         // invoke API to send email
-        var t = Task.Run(SendRequest);
+        // var t = Task.Run(SendRequest); /* Don't use Task for WebGL. it hangs indefinitely */
+        var t = SendRequest();
         yield return new WaitUntil(() => t.IsCompleted);
-
+        
         if (t.Result)
         {
             onComplete(true);

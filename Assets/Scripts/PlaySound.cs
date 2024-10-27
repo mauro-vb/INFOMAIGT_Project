@@ -13,27 +13,54 @@ public class PlaySound : MonoBehaviour
     public AudioSource background;
 
     private PlayerController playerController;
+    private TutorialPlayerController tutorialPlayerController;
     void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        background.Play();
+        playerController = GameObject.Find("Player")?.GetComponent<PlayerController>();
+        tutorialPlayerController = GameObject.Find("TutorialPlayer")?.GetComponent<TutorialPlayerController>();
+
+        if (tutorialPlayerController == null)
+        {
+            background.Play();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerController.isMoving)
+        if (playerController != null)
         {
-            if (!moving.isPlaying)
+            if (playerController.isMoving)
             {
-                moving.Play(); // Start playing if the sound is not already playing
+                if (!moving.isPlaying)
+                {
+                    moving.Play(); // Start playing if the sound is not already playing
+                }
+            }
+            else
+            {
+                if (moving.isPlaying)
+                {
+                    moving.Stop(); // Stop playing only if it's currently playing
+                }
             }
         }
-        else
+
+        if (tutorialPlayerController != null)
         {
-            if (moving.isPlaying)
+            if (tutorialPlayerController.isMoving)
             {
-                moving.Stop(); // Stop playing only if it's currently playing
+                if (!moving.isPlaying)
+                {
+                    moving.Play(); // Start playing if the sound is not already playing
+                }
+            }
+            else
+            {
+                if (moving.isPlaying)
+                {
+                    moving.Stop(); // Stop playing only if it's currently playing
+                }
             }
         }
     }

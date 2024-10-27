@@ -18,6 +18,8 @@ public class TutorialPlayerController : MonoBehaviour
     public bool canMove;
     public bool canTeleport;
 
+    public bool isMoving = false;
+
     void Start()
     {
         rc = GetComponent<TutorialResourceController>();
@@ -47,6 +49,7 @@ public class TutorialPlayerController : MonoBehaviour
 
         if (moveDirection != Vector2.zero)
         {
+            isMoving = true;
             animationSpeed = 0.1f;
             if (moveDirection.x == 0)
             {
@@ -74,6 +77,7 @@ public class TutorialPlayerController : MonoBehaviour
         }
         else
         {
+            isMoving = false;
             animationSpeed = 0.2f;
             sr.sprite = forwardSprites[currentFrame];
         }

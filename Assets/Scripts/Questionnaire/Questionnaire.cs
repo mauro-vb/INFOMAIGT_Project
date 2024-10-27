@@ -17,6 +17,7 @@ public class Questionnaire : MonoBehaviour
     public string previousSceneName;
 
     private MailSender mailSender;
+    private DataSender dataSender;
 
     private SceneFadeManager sceneFadeManager;
 
@@ -31,6 +32,7 @@ public class Questionnaire : MonoBehaviour
         }
 
         mailSender = new MailSender();
+        dataSender = new DataSender();
         if (errorLog)
         {
             errorLog.SetActive(false);
@@ -77,77 +79,63 @@ public class Questionnaire : MonoBehaviour
                 }
             }
 
-            StartCoroutine(SendAnswersMail());
+            SendAnswersMail();
         }
     }
 
-    private IEnumerator SendAnswersMail()
+    private void SendAnswersMail()
     {
-        StartCoroutine(sceneFadeManager.FadeOut());
+        DataSender.DataStructure data = new DataSender.DataStructure();
+        data.name = QDataManager.Instance.PlayerName.Length > 0 ? QDataManager.Instance.PlayerName : "NOT-FILLED";
+        data.inGameData = QDataManager.Instance.inGameData;
 
-        string body = "Data from player " + QDataManager.Instance.PlayerName + "<br/><br/>";
+        data.questionAnswers = new Dictionary<string, int>();
 
-        body += "Data for level " + previousSceneName + "<br/><br/>";
+        // string body = "Data from player " + QDataManager.Instance.PlayerName + "<br/><br/>";
+
+        // body += "Data for level " + previousSceneName + "<br/><br/>";
         /* In Game Data */
-        body += QDataManager.Instance.inGameData.GetStringHTML() + "<br/>";
+        // body += QDataManager.Instance.inGameData.GetStringHTML() + "<br/>";
 
         /* Questionnaire */
         if (questions != null)
         {
             /* HEADERS */
-            body += "No.Crt,Question,Answer<br/>";
+            // body += "No.Crt,Question,Answer<br/>";
             for (int i = 0; i < questions.Count; i++)
             {
-                body += i + "," + questions[i].question;
-                if (questions[i].GetType() == typeof(QCombobox))
-                {
-                    body += "," + ((QCombobox)questions[i]).answer;
-                }
-                else if (questions[i].GetType() == typeof(QOpen))
-                {
-                    body += "," + ((QOpen)questions[i]).answer;
-                }
-                else if (questions[i].GetType() == typeof(QCheckbox))
-                {
-                    body += "," + ((QCheckbox)questions[i]).answer;
-                }
-
-                body += "<br/>";
+                data.questionAnswers.Add(questions[i].question, ((QCombobox)questions[i]).answer);
+                // body += i + "," + questions[i].question;
+                // if (questions[i].GetType() == typeof(QCombobox))
+                // {
+                //     body += "," + ((QCombobox)questions[i]).answer;
+                // }
+                // else if (questions[i].GetType() == typeof(QOpen))
+                // {
+                //     body += "," + ((QOpen)questions[i]).answer;
+                // }
+                // else if (questions[i].GetType() == typeof(QCheckbox))
+                // {
+                //     body += "," + ((QCheckbox)questions[i]).answer;
+                // }
+                //
+                // body += "<br/>";
             }
 
-            MailSender.EmailData emailData = new MailSender.EmailData();
-            emailData.From = new MailSender.RecipientData("vlad.cpuscaru@gmail.com", "Unity AIGT Project");
-            emailData.To = new List<MailSender.RecipientData>()
-                { new("vlad.cpuscaru@gmail.com", "Vlad Puscaru") };
-            emailData.Subject = "[AIGT] - Questionnaire Data";
-            emailData.TextPart = body;
-            emailData.HTMLPart = body;
+            // MailSender.EmailData emailData = new MailSender.EmailData();
+            // emailData.From = new MailSender.RecipientData("vlad.cpuscaru@gmail.com", "Unity AIGT Project");
+            // emailData.To = new List<MailSender.RecipientData>()
+            //     { new("vlad.cpuscaru@gmail.com", "Vlad Puscaru") };
+            // emailData.Subject = "[AIGT] - Questionnaire Data";
+            // emailData.TextPart = body;
+            // emailData.HTMLPart = body;
+            //
+            // MailSender.BodyData bodyData = new MailSender.BodyData();
+            // bodyData.Messages = new List<MailSender.EmailData>();
+            // bodyData.Messages.Add(emailData);
+            // StartCoroutine(mailSender.SendEmail(bodyData, OnQuestionnaireComplete));
 
-            MailSender.BodyData bodyData = new MailSender.BodyData();
-            bodyData.Messages = new List<MailSender.EmailData>();
-            bodyData.Messages.Add(emailData);
-            StartCoroutine(mailSender.SendEmail(bodyData, OnQuestionnaireComplete));
-
-            yield return new WaitForSeconds(2f);
-
-            if (QDataManager.Instance != null)
-            {
-                var idxNext = SceneUtility.GetBuildIndexByScenePath(QDataManager.Instance.NextSceneName);
-                if (idxNext < SceneManager.sceneCountInBuildSettings)
-                {
-                    var currentScene = QDataManager.Instance.NextSceneName;
-                    var nextScene = SceneUtility.GetScenePathByBuildIndex(idxNext + 1);
-                    QDataManager.Instance.UpdateScenes(currentScene, nextScene);
-                    QDataManager.Instance.ResetLoggerData();
-
-                    if (sceneFadeManager)
-                    {
-                        StartCoroutine(sceneFadeManager.FadeOut());
-                    }
-
-                    SceneManager.LoadScene(QDataManager.Instance.CurrentSceneName);
-                }
-            }
+            StartCoroutine(dataSender.SendData(data, OnQuestionnaireComplete));
         }
     }
 
@@ -194,5 +182,24 @@ public class Questionnaire : MonoBehaviour
         }
 
         StartCoroutine(nameof(ShowThankYou), successSendingEmail);
+        
+        if (QDataManager.Instance != null)
+        {
+            var idxNext = SceneUtility.GetBuildIndexByScenePath(QDataManager.Instance.NextSceneName);
+            if (idxNext < SceneManager.sceneCountInBuildSettings)
+            {
+                var currentScene = QDataManager.Instance.NextSceneName;
+                var nextScene = SceneUtility.GetScenePathByBuildIndex(idxNext + 1);
+                QDataManager.Instance.UpdateScenes(currentScene, nextScene);
+                QDataManager.Instance.ResetLoggerData();
+
+                if (sceneFadeManager)
+                {
+                    StartCoroutine(sceneFadeManager.FadeOut());
+                }
+
+                SceneManager.LoadScene(QDataManager.Instance.CurrentSceneName);
+            }
+        }
     }
 }
