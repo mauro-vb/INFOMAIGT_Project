@@ -12,9 +12,10 @@ public class PlaySound : MonoBehaviour
     public AudioSource moving;
     public AudioSource background;
 
-    public PlayerController playerController;
+    private PlayerController playerController;
     void Start()
     {
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         background.Play();
     }
 
