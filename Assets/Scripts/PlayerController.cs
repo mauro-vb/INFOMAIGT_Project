@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private int currentFrame;
     private float timer;
 
+    public bool isMoving = false;
+
     void Start()
     {
         rc = GetComponent<ResourceController>();
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
         if (moveDirection != Vector2.zero)
         {
+            isMoving = true;
             animationSpeed = 0.1f;
             if (moveDirection.x == 0)
             {
@@ -71,6 +74,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            isMoving = false;
             animationSpeed = 0.2f;
             sr.sprite = forwardSprites[currentFrame];
         }

@@ -6,6 +6,7 @@ public class ProjectileController : MonoBehaviour
     // defining the event for when a projectile (health) is collected by player
     public static event Action OnProjectileCollected;
     public static event Action OnEnemyHit;
+    public static event Action OnProjectileBouncing;
 
 
     public int resourceCost = 10;
@@ -109,6 +110,9 @@ public class ProjectileController : MonoBehaviour
 
             dir = reflectedVelocity;
             rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
+
+            // invoking the bouncing event
+            OnProjectileBouncing?.Invoke();
         }
 
         if (other.gameObject.layer == Layers.ENVIRONMENT_WALL)
