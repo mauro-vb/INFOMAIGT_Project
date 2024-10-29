@@ -31,7 +31,15 @@ public class QDataManager : MonoBehaviour
 
     public void SetLoggerData(GameLogger.InGameData data)
     {
-        inGameData = data;
+        inGameData.totalTimeToClearLevel += data.totalTimeToClearLevel;
+        inGameData.healthLeftAtEnd += data.healthLeftAtEnd;
+        inGameData.totalShotsFired += data.totalShotsFired;
+        inGameData.totalShotsHit += data.totalShotsHit;
+        inGameData.shotsWhileMoving += data.shotsWhileMoving;
+        inGameData.idleTimeBeforeLevel += data.idleTimeBeforeLevel;
+        inGameData.numberOfTries += data.numberOfTries;
+        inGameData.resourceCollected += data.resourceCollected;
+        inGameData.damageTaken += data.damageTaken;
     }
 
     public void ResetLoggerData()

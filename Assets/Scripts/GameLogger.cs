@@ -19,7 +19,7 @@ public class GameLogger : MonoBehaviour
         public float damageTaken;
 
         public float accuracy;
-
+        
         public string GetStringHTML()
         {
             return "In Game Data" + "<br/>" +
@@ -91,6 +91,16 @@ public class GameLogger : MonoBehaviour
         UICommands.OnRestartLevel -= HandleNumberOfRetries;
         PlayerController.OnDamageTaken -= HandlePlayerDamageTaken;
 
+        // // Transfer collected data from the level to the QDataManager
+        // if (dataManager != null)
+        // {
+        //     data.accuracy = data.totalShotsFired != 0 ? (float)data.totalShotsHit / data.totalShotsFired : 0;
+        //     dataManager.GetComponent<QDataManager>().SetLoggerData(data);
+        // }
+    }
+
+    private void OnDestroy()
+    {
         // Transfer collected data from the level to the QDataManager
         if (dataManager != null)
         {
