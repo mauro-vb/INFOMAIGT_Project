@@ -33,20 +33,32 @@ public class DataSender
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         
+        /* Because we are using a free tier for the server
+         * it goes asleep after 15 mins of inactivity
+         * If that happens, the game is stuck until the server comes up
+         * In that time, the users usually press the submit button a lot of times,
+         * because they think the game is stuck (which it is)
+         * So instead of making the game stuck, we just set waiting for a response
+         * for 1 second and then proceed anyway
+         * The server queues up the requests so no data should be lost
+         */
+        request.timeout = 1;
+        
         request.SetRequestHeader("Content-Type", "application/json");
         
         yield return request.SendWebRequest();
         
-        if (request.result == UnityWebRequest.Result.ConnectionError ||
-            request.result == UnityWebRequest.Result.ProtocolError)
-        {
-            Debug.Log("Error: " + request.downloadHandler.text);
-            onComplete(false);
-        }
-        else
-        {
-            Debug.Log("Response: " + request.downloadHandler.text);
-            onComplete(true);
-        }
+        // if (request.result == UnityWebRequest.Result.ConnectionError ||
+        //     request.result == UnityWebRequest.Result.ProtocolError)
+        // {
+        //     Debug.Log("Error: " + request.downloadHandler.text);
+        //     onComplete(false);
+        // }
+        // else
+        // {
+        //     Debug.Log("Response: " + request.downloadHandler.text);
+        //     onComplete(true);
+        // }
+        onComplete(true);
     }
 }
