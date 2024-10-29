@@ -42,11 +42,12 @@ public class DataSender
          * for 1 second and then proceed anyway
          * The server queues up the requests so no data should be lost
          */
-        request.timeout = 1;
         
         request.SetRequestHeader("Content-Type", "application/json");
-        
-        yield return request.SendWebRequest();
+        request.SendWebRequest();
+
+        yield return new WaitForSeconds(0.5f);
+        // yield return request.SendWebRequest();
         
         // if (request.result == UnityWebRequest.Result.ConnectionError ||
         //     request.result == UnityWebRequest.Result.ProtocolError)
